@@ -63,3 +63,34 @@ body {
   border: 3px solid $tv-purple;
   border-radius: 3px;
 }
+
+// the following is from lab4 and will need to be updated
+
+.post-options-container{
+  display: flex;
+  justify-content: center;
+
+  button {
+    margin: 30px;
+  }
+}
+
+// .post-form {}
+
+#post-cards-container {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-content: flex-start;
+
+  overflow: hidden; // otherwise my dude grows beyond the lower bounds
+}
+
+.post-card-container {
+  width: 300px;
+  margin: 20px;
+}
+
+.detailed-post-card {
+  margin: auto 50px;
+}

@@ -35,9 +35,6 @@ class NavBar extends Component {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="mr-auto">
-            {/* hackily use "nav-link" to simulate <Nav.Link> */}
-            <NavLink className="nav-link" exact to={routePaths.Landing}>All Posts</NavLink>
-            <NavLink className="nav-link" exact to="/posts/new">Create New Post</NavLink>
             {this.props.authenticated && <Nav.Link>{this.props.currUser}</Nav.Link>}
             {this.props.authenticated
               ? (

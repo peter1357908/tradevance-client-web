@@ -1,6 +1,6 @@
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const CircularDependencyPlugin = require('circular-dependency-plugin')
+const CircularDependencyPlugin = require('circular-dependency-plugin');
 
 const env = process.env.NODE_ENV || 'development';
 // set to 'production' or 'development' in your env
@@ -65,13 +65,13 @@ module.exports = {
   plugins: [
     new MiniCssExtractPlugin(),
     new HtmlWebpackPlugin({
-      template: './src/index.html',
-      filename: './index.html',
+      template: 'src/index.html',
+      filename: 'index.html',
     }),
     // surge-specific!
     new HtmlWebpackPlugin({
-      template: './src/200.html',
-      filename: './200.html',
+      template: 'src/200.html',
+      filename: '200.html',
     }),
     new CircularDependencyPlugin({
       // exclude detection of files based on a RegExp

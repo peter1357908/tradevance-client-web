@@ -1,8 +1,6 @@
-
-
-
 # High Priority
 
+Fetch username if login token is present
 
 # Sanity Check
 
