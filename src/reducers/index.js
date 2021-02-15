@@ -2,10 +2,12 @@
 // this defines what your store state will look like
 import { combineReducers } from 'redux';
 
-import CountReducer from './count-reducer';
+import AuthReducer from './auth-reducer';
+import ErrorReducer from './error-reducer';
 
 const rootReducer = combineReducers({
-  count: CountReducer,
+  auth: AuthReducer,
+  error: ErrorReducer,
 });
 
 export default rootReducer;
