@@ -8,8 +8,10 @@ const initialState = {
 const ErrorReducer = (state = initialState, action) => {
   switch (action.type) {
     case ActionTypes.AXIOS_ERROR:
+      console.log(action.error);
       return { ...state, error: action.error };
     case ActionTypes.AUTH_ERROR:
+      console.log(action.error);
       return { ...state, error: action.error };
     default:
       return state;

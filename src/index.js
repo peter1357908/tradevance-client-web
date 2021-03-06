@@ -6,7 +6,7 @@ import thunk from 'redux-thunk';
 
 import reducers from './reducers'; // The magic starts here...
 import App from './components/app';
-import { ActionTypes } from './actions';
+import { fetchOwnProfile } from './actions';
 
 import 'bootstrap/dist/css/bootstrap.css'; // import bootstrap before custom CSS
 import './style.scss';
@@ -20,7 +20,7 @@ const store = createStore(reducers, {}, compose(
 // AUTH upon loading if a `token` is already present
 const token = localStorage.getItem('token');
 if (token) {
-  store.dispatch({ type: ActionTypes.AUTH_USER });
+  fetchOwnProfile(token)(store.dispatch);
 }
 
 // we now wrap App in a Provider

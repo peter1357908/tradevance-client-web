@@ -1,16 +1,20 @@
 # High Priority
 
-Fetch username if login token is present
+Use a more secure authentication scheme (currently the client sends naked authentication inforamtion, which is vulnerable to man-in-the-middle attack)
 
 # Sanity Check
 
 
 # Consistency
 
-* Use hooks consistently, (e.g. use useHistory() over withRouter())
+* Use Class Component for Section1 and Section2 under Landing (because they require event handling)
+* Name the object key "profile" rather than "user" in the user-related actions (and on the API side)
 
 
 # Definitions, Specifications, and Clarifications
+
+
+# (Micro-)Optimizations
 
 
 # New Features for Users
@@ -18,6 +22,10 @@ Fetch username if login token is present
 ## easy
 
 ## moderate
+
+* Responsiveness (see [here](https://stackoverflow.com/a/51744517)):
+  * NavBar
+  * Landing
 
 ## hard
 
@@ -29,8 +37,6 @@ Fetch username if login token is present
 * Store and use images server-side (e.g. the logo used for the navbar)
 
 ## moderate
-
-* Revamp navbar (build my own? Bootstrap is too hard to consistently customize)
 
 ## hard
 

@@ -1,9 +1,9 @@
 import React from 'react';
 import FlexView from 'react-flexview';
 import { useHistory } from 'react-router-dom';
-import routePaths from './routePaths';
+import routePaths from '../route-paths';
 
-import variables from '../style.scss';
+import cssVariables from '../style.scss';
 
 const ratio = 0.618; // approximated golden ratio
 const maxWidth = 1280; // the maximum the content can stretch to, in px
@@ -48,19 +48,19 @@ const Section1 = (props) => {
     rightPanel: {
       width: '50%',
       height: '100%',
-      backgroundColor: variables.bgGrey,
+      backgroundColor: cssVariables.bgGrey,
     },
   };
 
-  function handleClick() {
-    props.history.push(routePaths.Auth);
+  function onClickJoinNow() {
+    props.history.push(routePaths.SignUp);
   }
 
   return (
     <FlexView style={styles.section}>
       <div style={styles.leftPanel}>
         <p style={styles.text}>Discover and perfect your trading strategy</p>
-        <button type="button" className="primary-btn" style={styles.btn} onClick={handleClick}>Join Now</button>
+        <button type="button" className="primary-btn" style={styles.btn} onClick={onClickJoinNow}>Join Now</button>
       </div>
       <div style={styles.rightPanel}>
         {/* <img /> */}
@@ -77,7 +77,7 @@ const section2CardTextVWRatio = 0.8 * section2CardTitleTextVWRatio;
 
 const Section2Card = (props) => {
   const { styles } = props;
-  function handleClick() {
+  function onClickLearnMore() {
     props.history.push(props.learnMoreRoute);
   }
 
@@ -85,7 +85,7 @@ const Section2Card = (props) => {
     <div style={styles.card}>
       <p style={styles.cardTitle}>{props.cardTitle}</p>
       <p style={styles.cardText}>{props.cardText}</p>
-      <button type="button" className="secondary-btn" style={styles.btn} onClick={handleClick}>Learn More</button>
+      <button type="button" className="secondary-btn" style={styles.btn} onClick={onClickLearnMore}>Learn More</button>
     </div>
   );
 };
@@ -114,7 +114,7 @@ const Section2 = (props) => {
       height: '70%',
       bottom: '0px',
 
-      backgroundColor: variables.bgGrey,
+      backgroundColor: cssVariables.bgGrey,
     },
     card: {
       height: '50%',
