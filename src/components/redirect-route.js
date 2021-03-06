@@ -5,7 +5,7 @@
 
 import React from 'react';
 import { connect } from 'react-redux';
-import { withRouter, Route, Redirect } from 'react-router-dom';
+import { Route, Redirect } from 'react-router-dom';
 
 function mapStateToProps(reduxState) {
   return {
@@ -31,4 +31,4 @@ const RedirectRoute = ({ authenticatedRoute, component: Child, ...props }) => {
   );
 };
 
-export default withRouter(connect(mapStateToProps, null)(RedirectRoute));
+export default connect(mapStateToProps, null)(RedirectRoute);

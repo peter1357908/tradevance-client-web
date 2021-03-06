@@ -5,7 +5,7 @@
 
 import React from 'react';
 import { connect } from 'react-redux';
-import { withRouter, Route, Redirect } from 'react-router-dom';
+import { Route, Redirect } from 'react-router-dom';
 
 import routePaths from '../route-paths';
 
@@ -31,4 +31,4 @@ const PrivateRoute = ({ component: Child, ...props }) => {
   );
 };
 
-export default withRouter(connect(mapStateToProps, null)(PrivateRoute));
+export default connect(mapStateToProps, null)(PrivateRoute);
