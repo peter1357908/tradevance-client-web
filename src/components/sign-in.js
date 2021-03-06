@@ -1,6 +1,8 @@
+// this should be wrapped in a `RedirectRoute`: if authenticated, redirect to my-profile
+
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Form, Card, Button } from 'react-bootstrap';
+import { Form, Card } from 'react-bootstrap';
 import { withRouter } from 'react-router';
 
 import { signInUser } from '../actions';
@@ -36,25 +38,33 @@ class SignIn extends Component {
   }
 
   render() {
+    const styles = {
+      formCard: {
+        margin: 'auto 50px',
+      },
+
+      bottomButtonsContainer: {
+        display: 'flex',
+        justifyContent: 'center',
+      },
+
+      button: {
+        margin: '30px',
+      },
+    };
+
     return (
-      // TODO: fix these bad classNames... not exactly a
-      // post(-options)-container, yeah? Gotta make them style-oriented
-      // rather than id-oriented.
-      <div id="auth-container" className="post-container">
-        <Card id="auth-card" className="detailed-post-card">
+      <div>
+        <Card style={styles.formCard}>
           <Card.Body>
             <Card.Text><Form.Control type="text" onChange={this.onInputChangeUsername} value={this.state.username} placeholder="Username" /></Card.Text>
             <Card.Text><Form.Control type="password" onChange={this.onInputChangePassword} value={this.state.password} placeholder="Password" /></Card.Text>
           </Card.Body>
         </Card>
 
-        <div id="auth-options" className="post-options-container">
-          <Button variant="light" onClick={this.onClickBack}>
-            <i className="fas fa-arrow-alt-circle-left" />
-          </Button>
-          <Button variant="light" onClick={this.onClickSignIn}>
-            Sign In
-          </Button>
+        <div style={styles.bottomButtonsContainer}>
+          <button type="button" className="secondary-btn" style={styles.button} onClick={this.onClickBack}>Back</button>
+          <button type="button" className="primary-btn" style={styles.button} onClick={this.onClickSignIn}>Sign In</button>
         </div>
       </div>
     );

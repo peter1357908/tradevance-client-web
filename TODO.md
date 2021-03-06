@@ -40,7 +40,7 @@ Use a more secure authentication scheme (currently the client sends naked authen
 
 ## hard
 
-
+* make states persist between multiple opened pages - see [here](https://stackoverflow.com/a/49385375)
 
 
 

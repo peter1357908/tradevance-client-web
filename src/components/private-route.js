@@ -1,11 +1,17 @@
 /* eslint-disable react/jsx-props-no-spreading */
+// a wrapper around components:
+// if authenticated; render the wrapped component as usual;
+// if not authenticated; redirect to the sign-in page
+
 import React from 'react';
 import { connect } from 'react-redux';
 import { withRouter, Route, Redirect } from 'react-router-dom';
 
+import routePaths from '../route-paths';
+
 function mapStateToProps(reduxState) {
   return {
-    authenticated: reduxState.auth.authenticated,
+    authenticated: reduxState.user.authenticated,
   };
 }
 
@@ -19,7 +25,7 @@ const PrivateRoute = ({ component: Child, ...props }) => {
       render={(routeProps) => (props.authenticated ? (
         <Child {...routeProps} />
       ) : (
-        <Redirect to="/auth" />
+        <Redirect to={routePaths.SignIn} />
       ))}
     />
   );

@@ -6,7 +6,7 @@ import thunk from 'redux-thunk';
 
 import reducers from './reducers'; // The magic starts here...
 import App from './components/app';
-import { fetchOwnProfile } from './actions';
+import { ActionTypes, fetchOwnProfile } from './actions';
 
 import 'bootstrap/dist/css/bootstrap.css'; // import bootstrap before custom CSS
 import './style.scss';
@@ -18,8 +18,12 @@ const store = createStore(reducers, {}, compose(
 ));
 
 // AUTH upon loading if a `token` is already present
+// note that fetchOwnProfile() returns a function that takes in a `dispatch` as argument
 const token = localStorage.getItem('token');
 if (token) {
+  // need to mark as authenticated first, before trying to fetch data (otherwise, for example,
+  // a PrivateRoute is rendered first and gets the user redirected to sign-in...)
+  store.dispatch({ type: ActionTypes.SET_AUTH, authenticated: true });
   fetchOwnProfile(token)(store.dispatch);
 }
 
