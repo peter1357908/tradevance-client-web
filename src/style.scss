@@ -5,6 +5,13 @@ $bg-white: #FFFFFF;
 $bg-grey: #BBBBBB;
 $bg-black: #000000;
 
+$ratio: 0.618;  // approximated golden ratio
+$max-width: 1080;  // the maximum the content can stretch to, in px
+
+$large-font-size: 25px;
+$medium-font-size: 20px;
+$small-font-size: 15px;
+
 // webpack helps export the variables for use inside JS
 :export {
   tvPurple: $tv-purple;
@@ -13,13 +20,34 @@ $bg-black: #000000;
   bgWhite: $bg-white;
   bgGrey: $bg-grey;
   bgBlack: $bg-black;
+
+  ratio: $ratio;
+  maxWidth: $max-width;
+
+  largeFontSize: $large-font-size;
+  mediumFontSize: $medium-font-size;
+  smallFontSize: $small-font-size;
 }
 
 // the default settings
 * {  
   font-family: "Open Sans", sans-serif;
   font-style: normal;
-  font-size: 15px;
+  font-size: $small-font-size;
+}
+
+.footer-link:active, .footer-link:hover, .footer-link:visited {
+  color: $bg-black;
+}
+
+a {
+  font-size: 1em;
+}
+
+// simulate a thick underline
+.footer-link:hover {
+  text-decoration: none;
+  border-bottom: 2px solid $bg-black;
 }
 
 body {
@@ -35,7 +63,7 @@ body {
   border-radius: 3px;
 
   font-weight: bold;
-  font-size: 15px;
+  font-size: $small-font-size;
   color:$bg-white;
 
   text-align: center;
@@ -51,7 +79,7 @@ body {
   border-radius: 3px;
 
   font-weight: bold;
-  font-size: 15px;
+  font-size: $small-font-size;
   color:$tv-purple;
 
   text-align: center;

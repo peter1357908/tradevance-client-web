@@ -80,23 +80,27 @@ export function signUpUser({ username, password, email }, history) {
   };
 }
 
-// expects a non-null token from `localStorage.getItem('token')`;
+// expects an existing token; otherwise dispatches an authError (shouldn't happen).
 // fetches and populates the profile state and does nothing else
 // (i.e. does not SET_AUTH; expected authenticated===true)
 // if fails; sign out user (in case of expired token...?)
 export function fetchOwnProfile(token) {
-  return async (dispatch) => {
-    axios.get(`${ROOT_URL}/own-profile`, { headers: { authorization: token } })
-      .then((response) => {
-        dispatch({ type: ActionTypes.SET_PROFILE, profile: response.data.user });
-      })
-      .catch((error) => {
-        if (error.response.data) {
-          dispatch(authError(`Unable to fetch own profile: ${error.response.data}`));
-          signOutUser(null, null)(dispatch);
-        } else {
-          dispatch(axiosError(error));
-        }
-      });
+  return (dispatch) => {
+    if (token === null) {
+      dispatch(authError('Attempted to fetchOwnProfile() without a token'));
+    } else {
+      axios.get(`${ROOT_URL}/own-profile`, { headers: { authorization: token } })
+        .then((response) => {
+          dispatch({ type: ActionTypes.SET_PROFILE, profile: response.data.user });
+        })
+        .catch((error) => {
+          if (error.response.data) {
+            dispatch(authError(`Unable to fetch own profile: ${error.response.data}`));
+            signOutUser(null, null)(dispatch);
+          } else {
+            dispatch(axiosError(error));
+          }
+        });
+    }
   };
 }

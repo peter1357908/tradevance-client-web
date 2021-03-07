@@ -20,7 +20,7 @@ const store = createStore(reducers, {}, compose(
 // AUTH upon loading if a `token` is already present
 // note that fetchOwnProfile() returns a function that takes in a `dispatch` as argument
 const token = localStorage.getItem('token');
-if (token) {
+if (token !== null) {
   // need to mark as authenticated first, before trying to fetch data (otherwise, for example,
   // a PrivateRoute is rendered first and gets the user redirected to sign-in...)
   store.dispatch({ type: ActionTypes.SET_AUTH, authenticated: true });

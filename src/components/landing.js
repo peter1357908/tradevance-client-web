@@ -5,23 +5,24 @@ import routePaths from '../route-paths';
 
 import cssVariables from '../style.scss';
 
-const ratio = 0.618; // approximated golden ratio
-const maxWidth = 1280; // the maximum the content can stretch to, in px
+const { ratio, maxWidth } = cssVariables;
 const sectionRelativeHeight = `${ratio * 100}vw`;
 const sectionMaxWidth = `${maxWidth}px`;
 const sectionMaxHeight = `${maxWidth * ratio}px`;
 
 // Section 1
 // "Discover and perfect your trading strategy"
-const section1TextVWRatio = 3;
-
 const Section1 = (props) => {
+  const section1TextVWRatio = 3;
+
   const styles = {
     section: {
       width: '100%',
       height: sectionRelativeHeight,
       maxWidth: sectionMaxWidth,
       maxHeight: sectionMaxHeight,
+
+      borderBottom: `1px solid ${cssVariables.tvPurple}`,
     },
     leftPanel: {
       width: '50%',
@@ -71,10 +72,6 @@ const Section1 = (props) => {
 
 // Section 2
 // "A suite of comprehensive trading utility tools"
-const section2TitleTextVWRatio = 3;
-const section2CardTitleTextVWRatio = 2;
-const section2CardTextVWRatio = 0.8 * section2CardTitleTextVWRatio;
-
 const Section2Card = (props) => {
   const { styles } = props;
   function onClickLearnMore() {
@@ -91,12 +88,18 @@ const Section2Card = (props) => {
 };
 
 const Section2 = (props) => {
+  const section2TitleTextVWRatio = 3;
+  const section2CardTitleTextVWRatio = 2;
+  const section2CardTextVWRatio = 0.8 * section2CardTitleTextVWRatio;
+
   const styles = {
     section: {
       width: '100%',
       height: sectionRelativeHeight,
       maxWidth: sectionMaxWidth,
       maxHeight: sectionMaxHeight,
+
+      borderBottom: `1px solid ${cssVariables.tvPurple}`,
     },
     sectionTitle: {
       width: '100%',
@@ -183,12 +186,73 @@ const Section2 = (props) => {
 
 // // Section 3
 // // "Be productive on the go"
-// const Section3 = () => {
-// };
+const Section3 = (props) => {
+  const section3TitleVWRatio = 3;
+  const section3TextVWRatio = 1.5;
+  const section3HeightMultiplier = 0.7;
 
-// // Footer
-// const Footer = () => {
-// };
+  const styles = {
+    section: {
+      width: '100%',
+      height: `${ratio * 100 * section3HeightMultiplier}vw`,
+      maxWidth: sectionMaxWidth,
+      maxHeight: `${maxWidth * ratio * section3HeightMultiplier}px`,
+    },
+    leftPanel: {
+      width: '50%',
+      height: '100%',
+    },
+    image: {
+      width: '70%',
+      height: '70%',
+      backgroundColor: cssVariables.bgGrey,
+    },
+    rightPanel: {
+      width: '50%',
+      height: '100%',
+
+      padding: '10% 5%',
+
+      justifyContent: 'space-around',
+    },
+    title: {
+      fontWeight: 'bold',
+      fontSize: `min(${section3TitleVWRatio}vw, ${maxWidth * section3TitleVWRatio * 0.01}px)`,
+    },
+    text: {
+      fontSize: `min(${section3TextVWRatio}vw, ${maxWidth * section3TextVWRatio * 0.01}px)`,
+    },
+    buttons: {
+      width: '70%',
+
+      justifyContent: 'space-between',
+    },
+  };
+
+  function onClickAndroid() {
+    props.history.push(routePaths.Landing);
+  }
+
+  function onClickiOS() {
+    props.history.push(routePaths.Landing);
+  }
+
+  return (
+    <FlexView style={styles.section}>
+      <FlexView vAlignContent="center" hAlignContent="center" style={styles.leftPanel}>
+        <div style={styles.image} />
+      </FlexView>
+      <FlexView column hAlignContent="center" style={styles.rightPanel}>
+        <div style={styles.title}>Be productive on the go</div>
+        <div style={styles.text}>Access all analysis tools on our mobile platform.</div>
+        <FlexView style={styles.buttons}>
+          <button type="button" className="secondary-btn" onClick={onClickAndroid}>Android</button>
+          <button type="button" className="secondary-btn" onClick={onClickiOS}>iOS</button>
+        </FlexView>
+      </FlexView>
+    </FlexView>
+  );
+};
 
 // Landing Page (default export)
 const Landing = (props) => {
@@ -198,6 +262,7 @@ const Landing = (props) => {
     <FlexView column hAlignContent="center">
       <Section1 history={history} />
       <Section2 history={history} />
+      <Section3 history={history} />
     </FlexView>
   );
 };

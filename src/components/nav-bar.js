@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { NavLink, withRouter } from 'react-router-dom';
 
+import FlexView from 'react-flexview';
+
 import routePaths from '../route-paths';
 import cssVariables from '../style.scss';
 
@@ -24,21 +26,24 @@ class NavBar extends Component {
       top: '0px',
       zIndex: '9999',
 
+      padding: '0px 20px',
       width: '100%',
       height: `${this.navbarHeight}px`,
 
       backgroundColor: cssVariables.bgWhite,
+      borderBottom: `3px solid ${cssVariables.tvPurple}`,
+
+      justifyContent: 'space-between',
     },
 
     logo: {
-      // the following 4 lines vertically align an image
-      position: 'absolute',
-      top: '0',
-      bottom: '0',
-      margin: 'auto',
-
-      left: '40px',
       height: `${this.navbarHeight * 0.5}px`,
+    },
+
+    buttons: {
+      width: '220px',
+
+      justifyContent: 'space-between',
     },
   };
 
@@ -59,27 +64,18 @@ class NavBar extends Component {
   }
 
   contextualButtons = () => {
-    const styles = {
-      secondaryBtn: {
-        right: '180px',
-      },
-      primaryBtn: {
-        right: '40px',
-      },
-    };
-
     if (this.props.authenticated) {
       return (
         <>
-          <button type="button" className="secondary-btn vertically-centered" style={styles.secondaryBtn} onClick={this.onClickSignOut}>Sign Out</button>
-          <button type="button" className="primary-btn vertically-centered" style={styles.primaryBtn} onClick={this.onClickUsername}>{this.props.profile.auth.username}</button>
+          <button type="button" className="secondary-btn" onClick={this.onClickSignOut}>Sign Out</button>
+          <button type="button" className="primary-btn" onClick={this.onClickUsername}>{this.props.profile.auth.username}</button>
         </>
       );
     } else {
       return (
         <>
-          <button type="button" className="secondary-btn vertically-centered" style={styles.secondaryBtn} onClick={this.onClickSignIn}>Sign In</button>
-          <button type="button" className="primary-btn vertically-centered" style={styles.primaryBtn} onClick={this.onClickSignUp}>Sign Up</button>
+          <button type="button" className="secondary-btn" onClick={this.onClickSignIn}>Sign In</button>
+          <button type="button" className="primary-btn" onClick={this.onClickSignUp}>Sign Up</button>
         </>
       );
     }
@@ -91,7 +87,7 @@ class NavBar extends Component {
       return (null);
     } else {
       return (
-        <div style={this.styles.navBar}>
+        <FlexView vAlignContent="center" style={this.styles.navBar}>
           <NavLink to={routePaths.Landing}>
             <img
               src="https://drive.google.com/uc?id=1xIPCRtAdxfgtjPcDTz-oip4Z_O8vvlCl"
@@ -99,8 +95,10 @@ class NavBar extends Component {
               alt="TradeVance Logo"
             />
           </NavLink>
-          {this.contextualButtons()}
-        </div>
+          <FlexView vAlignContent="center" style={this.styles.buttons}>
+            {this.contextualButtons()}
+          </FlexView>
+        </FlexView>
       );
     }
   }
