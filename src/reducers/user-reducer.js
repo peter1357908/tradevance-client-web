@@ -26,11 +26,11 @@ const initialState = {
     },
 
     social: {
-      following: [''],
-      followers: [''],
-      ownPosts: [''],
-      starredPosts: [''],
-      ownComments: [''],
+      following: [],
+      followers: [],
+      ownPosts: [],
+      starredPosts: [],
+      ownComments: [],
 
       likeCount: {
         post: 0,
@@ -42,11 +42,11 @@ const initialState = {
     },
 
     messages: {
-      inbox: [''],
-      sent: [''],
+      inbox: [],
+      sent: [],
     },
 
-    notes: [''],
+    notes: [],
 
     alerts: [
       {
@@ -64,19 +64,19 @@ const initialState = {
 
     },
 
-    simulatedAccounts: [''],
+    simulatedAccounts: [],
 
     ideas: {
       own: {
-        strategies: [''],
-        models: [''],
-        scripts: [''],
+        strategies: [],
+        models: [],
+        scripts: [],
       },
 
       starred: {
-        strategies: [''],
-        models: [''],
-        scripts: [''],
+        strategies: [],
+        models: [],
+        scripts: [],
       },
     },
 
@@ -103,6 +103,11 @@ const initialState = {
       follower: '',
       system: '',
     },
+
+    createdAt: '', // parse with Date.parse()
+    updatedAt: '', // parse with Date.parse()
+
+    id: '', // the MongoDB Document ID
   },
 };
 
@@ -111,7 +116,8 @@ const UserReducer = (state = initialState, action) => {
     case ActionTypes.SET_AUTH:
       return { ...state, authenticated: action.authenticated };
     case ActionTypes.SET_PROFILE:
-      return { ...state, profile: action.profile };
+      // only update the parts that are present in the action
+      return { ...state, profile: { ...state.profile, ...action.profile } };
     case ActionTypes.DEAUTH:
       return initialState;
     default:

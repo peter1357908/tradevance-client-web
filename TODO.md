@@ -1,6 +1,10 @@
 # High Priority
 
-Use a more secure authentication scheme (currently the client sends naked authentication inforamtion, which is vulnerable to man-in-the-middle attack)
+* Use a more secure authentication scheme (currently the client sends naked authentication inforamtion, which is vulnerable to man-in-the-middle attack)
+
+* fetch only the minimum-necessary account information (i.e. username, for now) upon starting up the app, because accessing my-profile will automatically fetch the latest information anyway.
+
+* fetch populated content (getting document id/reference is meaningless to front-end)
 
 # Sanity Check
 
@@ -14,12 +18,13 @@ Use a more secure authentication scheme (currently the client sends naked authen
 
 # Definitions, Specifications, and Clarifications
 
+* define "Free Plan" on the server side and update `MyProfile.renderSubscription()`
 
 # (Micro-)Optimizations
 
-* fetch only the minimum-necessary account information (i.e. username, for now) upon starting up the app, because accessing my-profile will automatically fetch the latest information anyway.
-
 * explicitly cache image for reuse (i.e. the TradeVance logo)? Browser would typically cache the image for us, but this is not guaranteed.
+
+* curb the excessive use of \<FlexView\> (e.g. in `MyProfile`)
 
 # New Features for Users
 

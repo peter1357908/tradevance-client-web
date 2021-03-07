@@ -12,6 +12,7 @@ $nav-bar-height: 80; // the height of NavBar and Footer, in px
 $large-font-size: 25px;
 $medium-font-size: 20px;
 $small-font-size: 15px;
+$extra-small-font-size: 10px;
 
 // webpack helps export the variables for use inside JS
 :export {
@@ -29,6 +30,7 @@ $small-font-size: 15px;
   largeFontSize: $large-font-size;
   mediumFontSize: $medium-font-size;
   smallFontSize: $small-font-size;
+  extraSmallFontSize: $extra-small-font-size;
 }
 
 // the default settings
@@ -57,8 +59,7 @@ body {
 }
 
 .primary-btn {
-  width: 100px;
-  height: 40px;
+  padding: $extra-small-font-size $small-font-size;
 
   background-color: $tv-purple;
   border: 3px solid $tv-purple;
@@ -73,8 +74,7 @@ body {
 }
 
 .secondary-btn {
-  width: 100px;
-  height: 40px;
+  padding: $extra-small-font-size $small-font-size;
 
   background-color: $bg-white;
   border: 3px solid $tv-purple;

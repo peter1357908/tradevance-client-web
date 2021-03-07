@@ -41,9 +41,6 @@ const Section1 = (props) => {
       position: 'relative',
       top: '40%',
 
-      width: '35%',
-      height: '10%',
-      lineHeight: '100%',
       fontSize: `min(${section1TextVWRatio * 0.8}vw, ${maxWidth * section1TextVWRatio * 0.8 * 0.01}px)`,
     },
     rightPanel: {
@@ -134,9 +131,8 @@ const Section2 = (props) => {
       margin: '2% 0 5%',
     },
     btn: {
-      width: '30%',
-      height: '20%',
-      lineHeight: '100%',
+      padding: '2px 4px',
+
       fontSize: `min(${section2CardTextVWRatio}vw, ${maxWidth * section2CardTextVWRatio * 0.01}px)`,
     },
   };

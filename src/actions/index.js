@@ -4,6 +4,7 @@ import axios from 'axios';
 import routePaths from '../route-paths';
 
 const ROOT_URL = 'http://localhost:9090/api';
+// const ROOT_URL = 'https://tradevance.herokuapp.com/api';
 // TODO: make the above dependent on environment variable (whether development or production)
 
 export const ActionTypes = {

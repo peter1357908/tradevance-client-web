@@ -39,9 +39,11 @@ class NavBar extends Component {
     },
 
     buttons: {
-      width: '220px',
+      // nothing
+    },
 
-      justifyContent: 'space-between',
+    rightButton: {
+      marginLeft: '20px',
     },
   };
 
@@ -66,14 +68,14 @@ class NavBar extends Component {
       return (
         <>
           <button type="button" className="secondary-btn" onClick={this.onClickSignOut}>Sign Out</button>
-          <button type="button" className="primary-btn" onClick={this.onClickUsername}>{this.props.profile.auth.username}</button>
+          <button type="button" className="primary-btn" style={this.styles.rightButton} onClick={this.onClickUsername}>{this.props.profile.auth.username}</button>
         </>
       );
     } else {
       return (
         <>
           <button type="button" className="secondary-btn" onClick={this.onClickSignIn}>Sign In</button>
-          <button type="button" className="primary-btn" onClick={this.onClickSignUp}>Sign Up</button>
+          <button type="button" className="primary-btn" style={this.styles.rightButton} onClick={this.onClickSignUp}>Sign Up</button>
         </>
       );
     }
