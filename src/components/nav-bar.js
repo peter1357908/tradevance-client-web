@@ -17,8 +17,6 @@ function mapStateToProps(reduxState) {
 }
 
 class NavBar extends Component {
-  navbarHeight = 80;
-
   styles = {
     navBar: {
       // the following 3 lines make the nav-bar stick to the front and top
@@ -28,7 +26,7 @@ class NavBar extends Component {
 
       padding: '0px 20px',
       width: '100%',
-      height: `${this.navbarHeight}px`,
+      height: `${cssVariables.navBarHeight}px`,
 
       backgroundColor: cssVariables.bgWhite,
       borderBottom: `3px solid ${cssVariables.tvPurple}`,
@@ -37,7 +35,7 @@ class NavBar extends Component {
     },
 
     logo: {
-      height: `${this.navbarHeight * 0.5}px`,
+      height: `${cssVariables.navBarHeight * 0.5}px`,
     },
 
     buttons: {
@@ -90,7 +88,7 @@ class NavBar extends Component {
         <FlexView vAlignContent="center" style={this.styles.navBar}>
           <NavLink to={routePaths.Landing}>
             <img
-              src="https://drive.google.com/uc?id=1xIPCRtAdxfgtjPcDTz-oip4Z_O8vvlCl"
+              src="https://imgur.com/VqvlLK5.png"
               style={this.styles.logo}
               alt="TradeVance Logo"
             />

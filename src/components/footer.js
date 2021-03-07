@@ -6,13 +6,11 @@ import routePaths from '../route-paths';
 import cssVariables from '../style.scss';
 
 const Footer = (props) => {
-  const footerHeight = 80;
-
   const styles = {
     footer: {
       padding: '0px 20px',
       width: '100%',
-      height: `${footerHeight}px`,
+      height: `${cssVariables.navBarHeight}px`,
 
       backgroundColor: cssVariables.bgGrey,
       borderTop: `3px solid ${cssVariables.tvPurple}`,
@@ -21,7 +19,7 @@ const Footer = (props) => {
     },
 
     minilogo: {
-      height: `${footerHeight * 0.5}px`,
+      height: `${cssVariables.navBarHeight * 0.5}px`,
     },
 
     links: {
@@ -57,7 +55,7 @@ const Footer = (props) => {
       <FlexView vAlignContent="center" style={styles.footer}>
         <NavLink to={routePaths.Landing}>
           <img
-            src="https://drive.google.com/uc?id=1bX4qclO7qivWCMWHaeltUsP1Jm9ZvG8a"
+            src="https://imgur.com/QxLhWZ0.png"
             style={styles.minilogo}
             alt="TradeVance Mini-Logo"
           />

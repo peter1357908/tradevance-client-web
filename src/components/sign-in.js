@@ -5,7 +5,11 @@ import { connect } from 'react-redux';
 import { Form, Card } from 'react-bootstrap';
 import { withRouter } from 'react-router';
 
+import FlexView from 'react-flexview';
+
 import { signInUser } from '../actions';
+
+import cssVariables from '../style.scss';
 
 class SignIn extends Component {
   constructor(props) {
@@ -39,22 +43,29 @@ class SignIn extends Component {
 
   render() {
     const styles = {
+      formContainer: {
+        height: `calc(100vh - 2 * ${cssVariables.navBarHeight}px)`,
+        width: '100%',
+        maxWidth: `${cssVariables.maxWidth}px`,
+
+        padding: '20px 50px',
+      },
+
       formCard: {
-        margin: 'auto 50px',
+        width: '50%',
+
+        marginBottom: '20px',
       },
 
       bottomButtonsContainer: {
-        display: 'flex',
-        justifyContent: 'center',
-      },
+        width: '30%',
 
-      button: {
-        margin: '30px',
+        justifyContent: 'space-between',
       },
     };
 
     return (
-      <div>
+      <FlexView column hAlignContent="center" style={styles.formContainer}>
         <Card style={styles.formCard}>
           <Card.Body>
             <Card.Text><Form.Control type="text" onChange={this.onInputChangeUsername} value={this.state.username} placeholder="Username" /></Card.Text>
@@ -62,11 +73,11 @@ class SignIn extends Component {
           </Card.Body>
         </Card>
 
-        <div style={styles.bottomButtonsContainer}>
-          <button type="button" className="secondary-btn" style={styles.button} onClick={this.onClickBack}>Back</button>
-          <button type="button" className="primary-btn" style={styles.button} onClick={this.onClickSignIn}>Sign In</button>
-        </div>
-      </div>
+        <FlexView style={styles.bottomButtonsContainer}>
+          <button type="button" className="secondary-btn" onClick={this.onClickBack}>Back</button>
+          <button type="button" className="primary-btn" onClick={this.onClickSignIn}>Sign In</button>
+        </FlexView>
+      </FlexView>
     );
   }
 }

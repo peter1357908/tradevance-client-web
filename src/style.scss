@@ -7,6 +7,7 @@ $bg-black: #000000;
 
 $ratio: 0.618;  // approximated golden ratio
 $max-width: 1080;  // the maximum the content can stretch to, in px
+$nav-bar-height: 80; // the height of NavBar and Footer, in px
 
 $large-font-size: 25px;
 $medium-font-size: 20px;
@@ -23,6 +24,7 @@ $small-font-size: 15px;
 
   ratio: $ratio;
   maxWidth: $max-width;
+  navBarHeight: $nav-bar-height;
 
   largeFontSize: $large-font-size;
   mediumFontSize: $medium-font-size;
