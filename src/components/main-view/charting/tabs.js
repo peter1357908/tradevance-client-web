@@ -4,8 +4,8 @@ import { NavLink, withRouter } from 'react-router-dom';
 
 import FlexView from 'react-flexview';
 
-import { routePaths } from '../../global-variables';
-import cssVariables from '../../style.scss';
+import { routePaths } from '../../../global-variables';
+import cssVariables from '../../../style.scss';
 
 // import {  } from '../actions/user-actions';
 
