@@ -4,15 +4,19 @@ export const ErrorActionTypes = {
 };
 
 export function authError(error) {
-  return {
-    type: ErrorActionTypes.AUTH_ERROR,
-    error,
+  return (dispatch) => {
+    dispatch({
+      type: ErrorActionTypes.AUTH_ERROR,
+      error,
+    });
   };
 }
 
 export function axiosError(error) {
-  return {
-    type: ErrorActionTypes.AXIOS_ERROR,
-    error,
+  return (dispatch) => {
+    dispatch({
+      type: ErrorActionTypes.AXIOS_ERROR,
+      error,
+    });
   };
 }

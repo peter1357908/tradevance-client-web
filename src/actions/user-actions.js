@@ -32,9 +32,9 @@ export function signInUser({ username, password }, history) {
       })
       .catch((error) => {
         if (error.response.data) {
-          dispatch(authError(`Unable to sign in: ${error.response.data}`));
+          authError(`Unable to sign in: ${error.response.data}`)(dispatch);
         } else {
-          dispatch(axiosError(error));
+          axiosError(error)(dispatch);
         }
       });
   };
@@ -51,9 +51,9 @@ export function signUpUser({ username, password, email }, history) {
       })
       .catch((error) => {
         if (error.response.data) {
-          dispatch(authError(`Unable to sign up: ${error.response.data}`));
+          authError(`Unable to sign up: ${error.response.data}`)(dispatch);
         } else {
-          dispatch(axiosError(error));
+          axiosError(error)(dispatch);
         }
       });
   };
@@ -66,7 +66,7 @@ export function signUpUser({ username, password, email }, history) {
 export function fetchOwnProfile(token) {
   return (dispatch) => {
     if (token === null) {
-      dispatch(authError('Attempted to fetchOwnProfile() without a token'));
+      authError('Attempted to fetchOwnProfile() without a token')(dispatch);
     } else {
       axios.get(`${API_ROOT_URL}/own-profile`, { headers: { authorization: token } })
         .then((response) => {
@@ -74,10 +74,10 @@ export function fetchOwnProfile(token) {
         })
         .catch((error) => {
           if (error.response.data) {
-            dispatch(authError(`Unable to fetch own profile: ${error.response.data}`));
+            authError(`Unable to fetch own profile: ${error.response.data}`)(dispatch);
             signOutUser(null, null)(dispatch);
           } else {
-            dispatch(axiosError(error));
+            axiosError(error)(dispatch);
           }
         });
     }

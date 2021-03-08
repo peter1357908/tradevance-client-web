@@ -15,6 +15,8 @@
 * Name the object key "profile" rather than "user" in the user-related actions (and on the API side)
 * Use \<NavLink\> instead of history.push() when possible
 * Pull out the upper "overview" section in MyProfile and make it its own component. For abstraction.
+* use `const functionToPropsMapping` even when there is only one action to be mapped. Note that it is just a object! (there was some chained misunderstanding before that I'll omit here... renamed the variable to avoid further confusion)
+* design own sign-in and sign-up form instead of using Card and Form from react-bootstrap
 
 # Definitions, Specifications, and Clarifications
 

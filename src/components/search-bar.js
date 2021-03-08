@@ -1,37 +1,57 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { NavLink, withRouter } from 'react-router-dom';
-
-import FlexView from 'react-flexview';
+import { withRouter } from 'react-router-dom';
 
 import { routePaths } from '../global-variables';
 import cssVariables from '../style.scss';
 
-// import {  } from '../actions/user-actions';
+import { setSearchString } from '../actions/main-view-actions';
 
-function mapStateToProps(reduxState) {
-  return {
-    profile: reduxState.user.profile,
-  };
-}
+const functionToPropsMapping = {
+  setSearchString,
+};
 
-class SymbolSearchBar extends Component {
-  styles = {
-    profileDetails: {
-      width: '100%',
-      height: '100%',
+const styles = {
+  searchBar: {
+    height: '50%',
+    width: `min(40vw, ${cssVariables.maxWidth * 0.5}px)`,
+  },
+};
 
-      fontSize: cssVariables.smallFontSize,
-    },
-  };
+class SearchBar extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      searchString: '',
+    };
+  }
+
+  onInputChangeSearchString = (event) => {
+    this.setState({ searchString: event.target.value });
+  }
+
+  handleSubmit = (event) => {
+    console.log(this.state.searchString);
+    // we'll redirect with history.push() and this results in a canceled
+    // submission warning if we don't do event.preventDefault()
+    event.preventDefault();
+    this.props.setSearchString(this.state.searchString);
+    console.log(`after this.props.setSearchString ${this.props.setSearchString}`);
+
+    this.props.history.push(routePaths.MainView);
+  }
 
   render() {
     return (
-      <FlexView vAlignContent="center" hAlignContent="center">
-        <NavLink to={routePaths.Landing}>WORK IN PROGRESS</NavLink>
-      </FlexView>
+      <form className="search-bar" style={styles.searchBar} onSubmit={this.handleSubmit}>
+        <input type="text" onChange={this.onInputChangeSearchString} value={this.state.username} placeholder="Input symbol to search" />
+        <button type="submit" onClick={this.handleSubmit}>
+          Go
+        </button>
+      </form>
     );
   }
 }
 
-export default withRouter(connect(mapStateToProps, null)(SymbolSearchBar));
+export default withRouter(connect(null, functionToPropsMapping)(SearchBar));

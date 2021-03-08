@@ -11,7 +11,7 @@ import cssVariables from '../../../style.scss';
 
 function mapStateToProps(reduxState) {
   return {
-    profile: reduxState.user.profile,
+    searchString: reduxState.mainView.searchString,
   };
 }
 
@@ -28,7 +28,7 @@ class SymbolChart extends Component {
   render() {
     return (
       <FlexView vAlignContent="center" hAlignContent="center">
-        <NavLink to={routePaths.Landing}>WORK IN PROGRESS</NavLink>
+        <NavLink to={routePaths.Landing}>{this.props.searchString}</NavLink>
       </FlexView>
     );
   }

@@ -7,15 +7,14 @@ import Modules from './modules';
 import Models from './models';
 import ManualOrder from './manual-order';
 
-import cssVariabls from '../../style.scss';
+import cssVariables from '../../style.scss';
 
 const MainView = (props) => {
   const leftContainerRatio = 70; // in percentage with respect to width
   const chartingContainerRatio = 60; // in percentage with respect to height
   const modelsContainerRatio = 50; // in percentage with respect to height
 
-  const borderStyle = `3px solid ${cssVariabls.tvPurple}`;
-
+  // TODO: find a more consistent way to style the border lines
   const styles = {
     mainView: {
       width: '100vw',
@@ -25,7 +24,7 @@ const MainView = (props) => {
       width: `${leftContainerRatio}%`,
       height: '100%',
 
-      borderRight: borderStyle,
+      borderRight: cssVariables.defaultBorder,
     },
     rightContainer: {
       width: `${100 - leftContainerRatio}%`,
@@ -35,7 +34,7 @@ const MainView = (props) => {
       width: '100%',
       height: `${chartingContainerRatio}%`,
 
-      borderBottom: borderStyle,
+      borderBottom: cssVariables.defaultBorder,
     },
     modulesContainer: {
       width: '100%',
@@ -45,7 +44,7 @@ const MainView = (props) => {
       width: '100%',
       height: `${modelsContainerRatio}%`,
 
-      borderBottom: borderStyle,
+      borderBottom: cssVariables.defaultBorder,
     },
     manualOrderContainer: {
       width: '100%',

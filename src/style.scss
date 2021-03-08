@@ -14,6 +14,9 @@ $medium-font-size: 20px;
 $small-font-size: 15px;
 $extra-small-font-size: 10px;
 
+$default-border: 3px solid $tv-purple;
+$default-border-radius: 3px;
+
 // webpack helps export the variables for use inside JS
 :export {
   tvPurple: $tv-purple;
@@ -31,6 +34,9 @@ $extra-small-font-size: 10px;
   mediumFontSize: $medium-font-size;
   smallFontSize: $small-font-size;
   extraSmallFontSize: $extra-small-font-size;
+
+  defaultBorder: $default-border;
+  defaultBorderRadius: $default-border-radius;
 }
 
 // the default settings
@@ -62,8 +68,8 @@ body {
   padding: $extra-small-font-size $small-font-size;
 
   background-color: $tv-purple;
-  border: 3px solid $tv-purple;
-  border-radius: 3px;
+  border: $default-border;
+  border-radius: $default-border-radius;
 
   font-weight: bold;
   font-size: $small-font-size;
@@ -77,8 +83,8 @@ body {
   padding: $extra-small-font-size $small-font-size;
 
   background-color: $bg-white;
-  border: 3px solid $tv-purple;
-  border-radius: 3px;
+  border: $default-border;
+  border-radius: $default-border-radius;
 
   font-weight: bold;
   font-size: $small-font-size;
@@ -88,14 +94,37 @@ body {
   line-height: 100%;
 }
 
-.input-bar {
+.search-bar {
+  display: flex;
+
   background-color: $bg-white;
-  border: 3px solid $tv-purple;
-  border-radius: 3px;
+  border: $default-border;
+  border-radius: $default-border-radius;
 }
 
-.vertically-centered {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
+.search-bar > input {
+  height: 100%;
+  margin: 0 2px; 
+
+  border: none; // to negate the default styling
+  outline: none; // to negate the default styling
+
+  flex-grow: 1;
+}
+
+.search-bar > button {
+  flex-grow: 0;
+
+  border: none; // to negate the default styling
+
+  height: 100%;
+
+  background-color: $tv-purple;
+
+  font-weight: bold;
+  font-size: $small-font-size;
+  color:$bg-white;
+
+  text-align: center;
+  line-height: 100%;
 }

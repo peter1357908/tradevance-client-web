@@ -15,11 +15,9 @@ function mapStateToProps(reduxState) {
   };
 }
 
-function mapFunctionToProps() {
-  return {
-    fetchOwnProfile,
-  };
-}
+const functionToPropsMapping = {
+  fetchOwnProfile,
+};
 
 const profileMaxWidth = `${cssVariables.maxWidth}px`;
 const overviewHeight = 80; // in px
@@ -52,8 +50,8 @@ const styles = {
     width: '100%',
     height: '100%',
 
-    border: `3px solid ${cssVariables.tvPurple}`,
-    borderRadius: '3px',
+    border: cssVariables.defaultBorder,
+    borderRadius: cssVariables.defaultBorderRadius,
 
     backgroundColor: cssVariables.bgGrey,
   },
@@ -81,6 +79,7 @@ const styles = {
   },
   subscriptionButton: {
     padding: '1px 2px',
+    border: `2px solid ${cssVariables.tvPurple}`,
 
     fontSize: cssVariables.extraSmallFontSize,
   },
@@ -96,7 +95,8 @@ const styles = {
     justifyContent: 'space-between',
   },
   profileDetailsContainer: {
-    border: `3px solid ${cssVariables.tvPurple}`,
+    border: cssVariables.defaultBorder,
+    borderRadius: cssVariables.defaultBorderRadius,
 
     height: `${profileDetailsHeight}px`,
     width: '100%',
@@ -229,4 +229,4 @@ class MyProfile extends Component {
   }
 }
 
-export default connect(mapStateToProps, mapFunctionToProps)(MyProfile);
+export default connect(mapStateToProps, functionToPropsMapping)(MyProfile);

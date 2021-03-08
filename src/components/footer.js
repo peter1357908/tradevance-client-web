@@ -13,7 +13,7 @@ const Footer = (props) => {
       height: `${cssVariables.navBarHeight}px`,
 
       backgroundColor: cssVariables.bgGrey,
-      borderTop: `3px solid ${cssVariables.tvPurple}`,
+      borderTop: cssVariables.defaultBorder,
 
       justifyContent: 'space-between',
     },
