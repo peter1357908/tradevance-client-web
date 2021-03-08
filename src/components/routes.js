@@ -5,7 +5,7 @@ import routePaths from '../route-paths';
 import Landing from './landing';
 import MyProfile from './my-profile';
 // import PublicProfile from './public-profile';
-// import MainView from './main-view';
+import MainView from './main-view';
 import SignIn from './sign-in';
 import SignUp from './sign-up';
 
@@ -20,8 +20,8 @@ const Routes = (props) => {
       <PrivateRoute path={routePaths.MyProfile} component={MyProfile} />
       {/*
       <Route path=`${routePaths.PublicProfile}/:username` component={PublicProfile} />
-      <Route exact path={routePaths.MainView} component={MainView} />
       */}
+      <Route exact path={routePaths.MainView} component={MainView} />
       <RedirectRoute
         exact
         path={routePaths.SignIn}

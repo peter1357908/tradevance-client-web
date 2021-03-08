@@ -11,6 +11,28 @@ import { signInUser } from '../actions';
 
 import cssVariables from '../style.scss';
 
+const styles = {
+  formContainer: {
+    height: `calc(100vh - 2 * ${cssVariables.navBarHeight}px)`,
+    width: '100%',
+    maxWidth: `${cssVariables.maxWidth}px`,
+
+    padding: '20px 50px',
+  },
+
+  formCard: {
+    width: '50%',
+
+    marginBottom: '20px',
+  },
+
+  bottomButtonsContainer: {
+    width: '30%',
+
+    justifyContent: 'space-between',
+  },
+};
+
 class SignIn extends Component {
   constructor(props) {
     super(props);
@@ -42,28 +64,6 @@ class SignIn extends Component {
   }
 
   render() {
-    const styles = {
-      formContainer: {
-        height: `calc(100vh - 2 * ${cssVariables.navBarHeight}px)`,
-        width: '100%',
-        maxWidth: `${cssVariables.maxWidth}px`,
-
-        padding: '20px 50px',
-      },
-
-      formCard: {
-        width: '50%',
-
-        marginBottom: '20px',
-      },
-
-      bottomButtonsContainer: {
-        width: '30%',
-
-        justifyContent: 'space-between',
-      },
-    };
-
     return (
       <FlexView column hAlignContent="center" style={styles.formContainer}>
         <Card style={styles.formCard}>

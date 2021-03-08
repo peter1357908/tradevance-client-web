@@ -46,14 +46,11 @@ const initialState = {
       sent: [],
     },
 
+    watchlists: [],
+
     notes: [],
 
-    alerts: [
-      {
-        alertType: '',
-        parameters: {},
-      },
-    ],
+    alerts: [],
 
     subscription: {
       plan: '',
@@ -104,8 +101,8 @@ const initialState = {
       system: '',
     },
 
-    createdAt: '', // parse with Date.parse()
-    updatedAt: '', // parse with Date.parse()
+    createdAt: '', // convert to Date object by `new Date(createdAt)`
+    updatedAt: '',
 
     id: '', // the MongoDB Document ID
   },

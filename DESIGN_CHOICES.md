@@ -4,4 +4,6 @@
   * note: ALthough "sign-in" and "sign-up" currently share the same inline styling, it may differ in the future.
   * exception: things that are only cleanly realized in CSS like `:hover`
 
-* for functional components, define constants as `const`s inside the function; for class components, define constants as `const`s outside the class.
+* for functional components, define constants as `const`s inside the function; for class components, define constants (including `styles`) as `const`s outside the class.
+
+* the folders inside the `components` directory contain grouped components, whose combined, exposed component is exported by `index.js` in the root of each folder.

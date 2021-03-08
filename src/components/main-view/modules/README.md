@@ -1,0 +1,1 @@
+borrow NOTES, WATCHLISTS, and IDEAS from profile-details-components?

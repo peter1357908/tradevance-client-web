@@ -14,7 +14,7 @@
 * Use Class Component for Section1 and Section2 under Landing (because they require event handling)
 * Name the object key "profile" rather than "user" in the user-related actions (and on the API side)
 * Use \<NavLink\> instead of history.push() when possible
-
+* Pull out the upper "overview" section in MyProfile and make it its own component. For abstraction.
 
 # Definitions, Specifications, and Clarifications
 
@@ -25,6 +25,8 @@
 * explicitly cache image for reuse (i.e. the TradeVance logo)? Browser would typically cache the image for us, but this is not guaranteed.
 
 * curb the excessive use of \<FlexView\> (e.g. in `MyProfile`)
+
+* get rid of the ulgy imports (e.g. `../../../routePaths.js`)... maybe use global/env definitions?
 
 # New Features for Users
 

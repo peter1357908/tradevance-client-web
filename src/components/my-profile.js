@@ -7,6 +7,8 @@ import { connect } from 'react-redux';
 import { fetchOwnProfile } from '../actions';
 import cssVariables from '../style.scss';
 
+import ProfileDetails from './profile-details';
+
 function mapStateToProps(reduxState) {
   return {
     profile: reduxState.user.profile,
@@ -20,88 +22,89 @@ function mapFunctionToProps() {
 }
 
 const profileMaxWidth = `${cssVariables.maxWidth}px`;
-const overviewSectionHeight = 80; // in px
-const overviewSectionLeftWidth = 300; // in px
+const overviewHeight = 80; // in px
+const profileDetailsHeight = 550; // in px
+const spaceBetween = 25; // in px, realized by margin/padding
+const overviewLeftWidth = 300; // in px
+
+const styles = {
+  profileComponent: {
+    height: `max(calc(100vh - ${cssVariables.navBarHeight * 2}px), ${overviewHeight + profileDetailsHeight + spaceBetween * 3}px)`,
+    padding: `${spaceBetween}px`,
+    width: '100%',
+  },
+  overview: {
+    height: `${overviewHeight}px`,
+    width: '100%',
+    maxWidth: profileMaxWidth,
+
+    marginBottom: `${spaceBetween}px`,
+  },
+  overviewLeft: {
+    width: `${overviewLeftWidth}px`,
+    height: '100%',
+  },
+  profilePictureContainer: {
+    width: `${overviewHeight}px`,
+    height: `${overviewHeight}px`,
+  },
+  profilePicture: {
+    width: '100%',
+    height: '100%',
+
+    border: `3px solid ${cssVariables.tvPurple}`,
+    borderRadius: '3px',
+
+    backgroundColor: cssVariables.bgGrey,
+  },
+  usernameAndSubscription: {
+    // the overviewHeight is also the width of the profilePictureContainer
+    width: `${overviewLeftWidth - overviewHeight}px`,
+    height: `${overviewHeight}px`,
+
+    padding: '0 5%',
+  },
+  username: {
+    height: '60%',
+
+    color: cssVariables.tvPurple,
+    fontWeight: 'bold',
+    fontSize: cssVariables.largeFontSize,
+  },
+  subscriptionContainer: {
+    height: '40%',
+  },
+  subscriptionText: {
+    fontSize: cssVariables.extraSmallFontSize,
+
+    marginRight: `${spaceBetween}px`,
+  },
+  subscriptionButton: {
+    padding: '1px 2px',
+
+    fontSize: cssVariables.extraSmallFontSize,
+  },
+  overviewRight: {
+    width: `calc(100% - ${overviewLeftWidth}px)`,
+    height: '100%',
+
+    fontSize: cssVariables.mediumFontSize,
+  },
+  overviewRightSingleRow: {
+    height: '50%',
+
+    justifyContent: 'space-between',
+  },
+  profileDetailsContainer: {
+    border: `3px solid ${cssVariables.tvPurple}`,
+
+    height: `${profileDetailsHeight}px`,
+    width: '100%',
+    maxWidth: profileMaxWidth,
+  },
+};
 
 class MyProfile extends Component {
-  styles = {
-    profileComponent: {
-      padding: '25px',
-      width: '100%',
-    },
-    overviewSection: {
-      height: `${overviewSectionHeight}px`,
-      width: '100%',
-      maxWidth: profileMaxWidth,
-
-      marginBottom: '25px',
-    },
-    overviewSectionLeft: {
-      width: `${overviewSectionLeftWidth}px`,
-      height: '100%',
-    },
-    profilePictureContainer: {
-      width: `${overviewSectionHeight}px`,
-      height: `${overviewSectionHeight}px`,
-    },
-    profilePicture: {
-      width: '100%',
-      height: '100%',
-
-      border: `3px solid ${cssVariables.tvPurple}`,
-      borderRadius: '3px',
-
-      backgroundColor: cssVariables.bgGrey,
-    },
-    usernameAndSubscription: {
-      // the overviewSectionHeight is also the width of the profilePictureContainer
-      width: `${overviewSectionLeftWidth - overviewSectionHeight}px`,
-      height: `${overviewSectionHeight}px`,
-
-      padding: '0 5%',
-    },
-    username: {
-      height: '60%',
-
-      color: cssVariables.tvPurple,
-      fontWeight: 'bold',
-      fontSize: cssVariables.largeFontSize,
-    },
-    subscriptionContainer: {
-      height: '40%',
-    },
-    subscriptionText: {
-      fontSize: cssVariables.extraSmallFontSize,
-
-      marginRight: '20px',
-    },
-    subscriptionButton: {
-      padding: '1px 2px',
-
-      fontSize: cssVariables.extraSmallFontSize,
-    },
-    overviewSectionRight: {
-      width: `calc(100% - ${overviewSectionLeftWidth}px)`,
-      height: '100%',
-
-      fontSize: cssVariables.mediumFontSize,
-    },
-    overviewSectionRightSingleRow: {
-      height: '50%',
-
-      justifyContent: 'space-between',
-    },
-    detailsSection: {
-      border: '3px solid black',
-
-      height: '550px',
-      width: '100%',
-      maxWidth: profileMaxWidth,
-
-      fontSize: cssVariables.smallFontSize,
-    },
-  };
-
   componentDidMount() {
     const token = localStorage.getItem('token');
     this.props.fetchOwnProfile(token);
@@ -179,24 +182,24 @@ class MyProfile extends Component {
 
   render() {
     return (
-      <FlexView column hAlignContent="center" style={this.styles.profileComponent}>
-        <FlexView style={this.styles.overviewSection}>
+      <FlexView column hAlignContent="center" style={styles.profileComponent}>
+        <FlexView style={styles.overview}>
 
           {/* left section */}
-          <FlexView style={this.styles.overviewSectionLeft}>
-            <FlexView hAlignContent="center" vAlignContent="center" style={this.styles.profilePictureContainer}>
-              <div style={this.styles.profilePicture} />
+          <FlexView style={styles.overviewLeft}>
+            <FlexView hAlignContent="center" vAlignContent="center" style={styles.profilePictureContainer}>
+              <div style={styles.profilePicture} />
             </FlexView>
 
-            <FlexView column style={this.styles.usernameAndSubscription}>
-              <FlexView vAlignContent="center" style={this.styles.username}>
+            <FlexView column style={styles.usernameAndSubscription}>
+              <FlexView vAlignContent="center" style={styles.username}>
                 {this.props.profile.auth.username}
               </FlexView>
-              <FlexView vAlignContent="center" style={this.styles.subscriptionContainer}>
-                <div style={this.styles.subscriptionText}>
+              <FlexView vAlignContent="center" style={styles.subscriptionContainer}>
+                <div style={styles.subscriptionText}>
                   {this.renderSubscriptionText()}
                 </div>
-                <button type="button" className="secondary-btn" onClick={this.onClickSubscriptionButton} style={this.styles.subscriptionButton}>
+                <button type="button" className="secondary-btn" onClick={this.onClickSubscriptionButton} style={styles.subscriptionButton}>
                   {this.renderSubscriptionButtonText()}
                 </button>
               </FlexView>
@@ -204,22 +207,22 @@ class MyProfile extends Component {
           </FlexView>
 
           {/* right section */}
-          <FlexView column style={this.styles.overviewSectionRight}>
-            <FlexView vAlignContent="center" style={this.styles.overviewSectionRightSingleRow}>
+          <FlexView column style={styles.overviewRight}>
+            <FlexView vAlignContent="center" style={styles.overviewRightSingleRow}>
               <div>{this.renderJoinedTimeAgo()}</div>
               <div>Followers: {this.props.profile.social.followers.length}</div>
               <div>Following: {this.props.profile.social.following.length}</div>
             </FlexView>
 
-            <FlexView vAlignContent="center" style={this.styles.overviewSectionRightSingleRow}>
+            <FlexView vAlignContent="center" style={styles.overviewRightSingleRow}>
               <div>Posts: {this.props.profile.social.ownPosts.length}</div>
               <div>{this.renderTotalIdeaCount()}</div>
               <div>{this.renderTotalLikeCount()}</div>
             </FlexView>
           </FlexView>
         </FlexView>
-        <div style={this.styles.detailsSection}>
-          {this.renderJoinedTimeAgo()}
+        <div style={styles.profileDetailsContainer}>
+          <ProfileDetails />
         </div>
       </FlexView>
     );
