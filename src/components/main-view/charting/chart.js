@@ -1,37 +1,49 @@
+// DISCLAIMER: this component is currently using a widget from TradingView to display
+// an interactive chart just as a placeholder! The final product will not rely on any
+// external widgets.
+
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { NavLink, withRouter } from 'react-router-dom';
 
-import FlexView from 'react-flexview';
-
-import { routePaths } from '../../../global-variables';
-import cssVariables from '../../../style.scss';
-
-// import {  } from '../actions/user-actions';
+import TradingViewWidget from 'react-tradingview-widget';
 
 function mapStateToProps(reduxState) {
   return {
-    profile: reduxState.user.profile,
+    tabs: reduxState.mainView.chartingTabs,
+    activeIndex: reduxState.mainView.activeChartingTabIndex,
   };
 }
 
-class SymbolChart extends Component {
+class Chart extends Component {
   styles = {
-    profileDetails: {
+    noTabNotificationContainer: {
       width: '100%',
       height: '100%',
 
-      fontSize: cssVariables.smallFontSize,
+      textAlign: 'center',
     },
   };
 
   render() {
+    if (this.props.activeIndex < 0) {
+      return (
+        <div style={this.styles.noTabNotificationContainer}>
+          Search a symbol to get started!
+        </div>
+      );
+    }
+
+    const activeSymbol = this.props.tabs[this.props.activeIndex].symbol;
     return (
-      <FlexView vAlignContent="center" hAlignContent="center">
-        <NavLink to={routePaths.Landing}>WORK IN PROGRESS</NavLink>
-      </FlexView>
+      <TradingViewWidget
+        symbol={activeSymbol}
+        autosize
+        hide_top_toolbar
+        withdateranges
+        timezone="exchange"
+      />
     );
   }
 }
 
-export default withRouter(connect(mapStateToProps, null)(SymbolChart));
+export default connect(mapStateToProps, null)(Chart);

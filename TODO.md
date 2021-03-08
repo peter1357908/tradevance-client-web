@@ -30,6 +30,12 @@
 
 * get rid of the ulgy imports (e.g. `../../../routePaths.js`)... maybe use global/env definitions?
 
+# Potential/Eventual Redundancies
+
+* react-tradingview-widget dependency
+* some script tags in `index.html` and `200.html`
+  * fontawesome
+
 # New Features for Users
 
 ## easy
