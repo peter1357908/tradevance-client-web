@@ -1,16 +1,16 @@
-import { ActionTypes } from '../actions';
+import { ErrorActionTypes } from '../actions/error-actions';
 
 const initialState = {
-  error: null,
+  error: 'No error yet - except that this message is erroneously printed.',
 };
 
 // TODO: object spread operator?
 const ErrorReducer = (state = initialState, action) => {
   switch (action.type) {
-    case ActionTypes.AXIOS_ERROR:
+    case ErrorActionTypes.AUTH_ERROR:
       console.log(action.error);
       return { ...state, error: action.error };
-    case ActionTypes.AUTH_ERROR:
+    case ErrorActionTypes.AXIOS_ERROR:
       console.log(action.error);
       return { ...state, error: action.error };
     default:

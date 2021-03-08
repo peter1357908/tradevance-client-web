@@ -1,6 +1,6 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
-import routePaths from '../route-paths';
+import { routePaths } from '../global-variables';
 
 import Landing from './landing';
 import MyProfile from './my-profile';

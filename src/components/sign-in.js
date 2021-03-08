@@ -7,7 +7,7 @@ import { withRouter } from 'react-router';
 
 import FlexView from 'react-flexview';
 
-import { signInUser } from '../actions';
+import { signInUser } from '../actions/user-actions';
 
 import cssVariables from '../style.scss';
 

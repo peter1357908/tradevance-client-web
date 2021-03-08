@@ -7,3 +7,5 @@
 * for functional components, define constants as `const`s inside the function; for class components, define constants (including `styles`) as `const`s outside the class.
 
 * the folders inside the `components` directory contain grouped components, whose combined, exposed component is exported by `index.js` in the root of each folder.
+
+* API calls should only be made inside the action creators

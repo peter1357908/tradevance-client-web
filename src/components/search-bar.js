@@ -4,8 +4,8 @@ import { NavLink, withRouter } from 'react-router-dom';
 
 import FlexView from 'react-flexview';
 
-import { routePaths } from '../../global-variables';
-import cssVariables from '../../style.scss';
+import { routePaths } from '../global-variables';
+import cssVariables from '../style.scss';
 
 // import {  } from '../actions/user-actions';
 
@@ -15,7 +15,7 @@ function mapStateToProps(reduxState) {
   };
 }
 
-class SymbolTabs extends Component {
+class SymbolSearchBar extends Component {
   styles = {
     profileDetails: {
       width: '100%',
@@ -34,4 +34,4 @@ class SymbolTabs extends Component {
   }
 }
 
-export default withRouter(connect(mapStateToProps, null)(SymbolTabs));
+export default withRouter(connect(mapStateToProps, null)(SymbolSearchBar));

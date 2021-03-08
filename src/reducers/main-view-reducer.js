@@ -1,19 +1,21 @@
-import { ActionTypes } from '../actions';
+import { MainViewActionTypes } from '../actions/main-view-actions';
 
 const initialState = {
+  searchString: 'AAPL', // determine the first ever charting tab opened
+
   chartingTabs: [],
   activeChartingTab: '',
 };
 
-const UserReducer = (state = initialState, action) => {
+const MainViewReducer = (state = initialState, action) => {
   switch (action.type) {
-    case ActionTypes.SET_CHARTING_TABS:
+    case MainViewActionTypes.SET_CHARTING_TABS:
       return { ...state, chartingTabs: action.chartingTabs };
-    case ActionTypes.SET_ACTIVE_CHARTING_TAB:
+    case MainViewActionTypes.SET_ACTIVE_CHARTING_TAB:
       return { ...state, activeChartingTab: action.activeChartingTab };
     default:
       return state;
   }
 };
 
-export default UserReducer;
+export default MainViewReducer;

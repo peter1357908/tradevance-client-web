@@ -1,4 +1,4 @@
-import { ActionTypes } from '../actions';
+import { UserActionTypes } from '../actions/user-actions';
 
 const initialState = {
   // note that authenticated===true just means that we should render as if
@@ -110,12 +110,12 @@ const initialState = {
 
 const UserReducer = (state = initialState, action) => {
   switch (action.type) {
-    case ActionTypes.SET_AUTH:
+    case UserActionTypes.SET_AUTH:
       return { ...state, authenticated: action.authenticated };
-    case ActionTypes.SET_PROFILE:
+    case UserActionTypes.SET_PROFILE:
       // only update the parts that are present in the action
       return { ...state, profile: { ...state.profile, ...action.profile } };
-    case ActionTypes.DEAUTH:
+    case UserActionTypes.DEAUTH:
       return initialState;
     default:
       return state;

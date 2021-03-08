@@ -1,7 +1,7 @@
 import React from 'react';
 import FlexView from 'react-flexview';
 import { useHistory } from 'react-router-dom';
-import routePaths from '../route-paths';
+import { routePaths } from '../global-variables';
 
 import cssVariables from '../style.scss';
 

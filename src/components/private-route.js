@@ -7,7 +7,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Route, Redirect } from 'react-router-dom';
 
-import routePaths from '../route-paths';
+import { routePaths } from '../global-variables';
 
 function mapStateToProps(reduxState) {
   return {

@@ -4,7 +4,7 @@ import React, { Component } from 'react';
 import FlexView from 'react-flexview/lib';
 import { connect } from 'react-redux';
 
-import { fetchOwnProfile } from '../actions';
+import { fetchOwnProfile } from '../actions/user-actions';
 import cssVariables from '../style.scss';
 
 import ProfileDetails from './profile-details';

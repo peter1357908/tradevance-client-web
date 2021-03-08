@@ -1,42 +1,20 @@
-/* all the API calls happen in action creators
- */
 import axios from 'axios';
-import routePaths from '../route-paths';
+import { routePaths, API_ROOT_URL } from '../global-variables';
 
-const ROOT_URL = 'http://localhost:9090/api';
-// const ROOT_URL = 'https://tradevance.herokuapp.com/api';
-// TODO: make the above dependent on environment variable (whether development or production)
+import { authError, axiosError } from './error-actions';
 
-export const ActionTypes = {
-  // user-reducer actions
+export const UserActionTypes = {
   SET_AUTH: 'SET_AUTH',
   SET_PROFILE: 'SET_PROFILE',
   DEAUTH: 'DEAUTH',
-
-  // error-reducers
-  AUTH_ERROR: 'AUTH_ERROR', // also handled by error-reducer
 };
-
-export function authError(error) {
-  return {
-    type: ActionTypes.AUTH_ERROR,
-    error,
-  };
-}
-
-export function axiosError(error) {
-  return {
-    type: ActionTypes.AXIOS_ERROR,
-    error,
-  };
-}
 
 // delete token from localStorage and update states accordingly
 // if no rediction needed, input null for history or redirectRoute
 export function signOutUser(history, redirectRoute) {
   return (dispatch) => {
     localStorage.removeItem('token');
-    dispatch({ type: ActionTypes.DEAUTH });
+    dispatch({ type: UserActionTypes.DEAUTH });
     if (history !== null && redirectRoute !== null) {
       history.push(redirectRoute);
     }
@@ -45,10 +23,10 @@ export function signOutUser(history, redirectRoute) {
 
 export function signInUser({ username, password }, history) {
   return (dispatch) => {
-    axios.post(`${ROOT_URL}/sign-in`, { username, password })
+    axios.post(`${API_ROOT_URL}/sign-in`, { username, password })
       .then((response) => {
-        dispatch({ type: ActionTypes.SET_PROFILE, profile: response.data.user });
-        dispatch({ type: ActionTypes.SET_AUTH, authenticated: true });
+        dispatch({ type: UserActionTypes.SET_PROFILE, profile: response.data.user });
+        dispatch({ type: UserActionTypes.SET_AUTH, authenticated: true });
         localStorage.setItem('token', response.data.token);
         history.push(routePaths.MyProfile);
       })
@@ -64,10 +42,10 @@ export function signInUser({ username, password }, history) {
 
 export function signUpUser({ username, password, email }, history) {
   return (dispatch) => {
-    axios.post(`${ROOT_URL}/sign-up`, { username, password, email })
+    axios.post(`${API_ROOT_URL}/sign-up`, { username, password, email })
       .then((response) => {
-        dispatch({ type: ActionTypes.SET_PROFILE, profile: response.data.user });
-        dispatch({ type: ActionTypes.SET_AUTH, authenticated: true });
+        dispatch({ type: UserActionTypes.SET_PROFILE, profile: response.data.user });
+        dispatch({ type: UserActionTypes.SET_AUTH, authenticated: true });
         localStorage.setItem('token', response.data.token);
         history.push(routePaths.MyProfile);
       })
@@ -90,9 +68,9 @@ export function fetchOwnProfile(token) {
     if (token === null) {
       dispatch(authError('Attempted to fetchOwnProfile() without a token'));
     } else {
-      axios.get(`${ROOT_URL}/own-profile`, { headers: { authorization: token } })
+      axios.get(`${API_ROOT_URL}/own-profile`, { headers: { authorization: token } })
         .then((response) => {
-          dispatch({ type: ActionTypes.SET_PROFILE, profile: response.data.user });
+          dispatch({ type: UserActionTypes.SET_PROFILE, profile: response.data.user });
         })
         .catch((error) => {
           if (error.response.data) {

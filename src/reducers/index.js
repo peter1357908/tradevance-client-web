@@ -4,10 +4,12 @@ import { combineReducers } from 'redux';
 
 import UserReducer from './user-reducer';
 import ErrorReducer from './error-reducer';
+import MainViewReducer from './main-view-reducer';
 
 const rootReducer = combineReducers({
   user: UserReducer,
   error: ErrorReducer,
+  mainView: MainViewReducer,
 });
 
 export default rootReducer;
