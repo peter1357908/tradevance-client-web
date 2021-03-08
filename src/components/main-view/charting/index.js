@@ -2,8 +2,8 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 
 import Chart from './chart';
-import SearchBar from './search-bar';
-import Tabs from './tabs';
+import SymbolSearchBar from '../../symbol-search-bar';
+import ChartingTabs from './charting-tabs';
 import ToolPillar from './tool-pillar';
 
 import cssVariables from '../../../style.scss';
@@ -11,8 +11,7 @@ import { routePaths } from '../../../global-variables';
 
 const Charting = (props) => {
   const leftContainerWidth = 50; // in px - fixed length
-  const searchBarContainerWidth = 250; // in px - fixed length
-
+  const searchBarAndTabsContainerHeight = 50; // in px - fixed length
   const spaceBetween = 15; // in px, realized by margin/padding
 
   // TODO: find a more consistent way to style the border lines
@@ -69,16 +68,13 @@ const Charting = (props) => {
       display: 'flex',
 
       width: '100%',
-      // since we expect a square logo, this lines the divider up
-      // with the top of the toolPillarContainer
-      height: `${leftContainerWidth + spaceBetween}px`,
+      height: `${searchBarAndTabsContainerHeight}px`,
 
       flexGrow: '0',
     },
-    searchBarContainer: {
-      width: `${searchBarContainerWidth}px`,
-      // again, becacuse we expect a square logo
-      height: `${leftContainerWidth}px`,
+    searchBar: {
+      width: '250px',
+      height: `${searchBarAndTabsContainerHeight * 0.8}px`,
 
       marginRight: `${spaceBetween}px`,
 
@@ -112,11 +108,11 @@ const Charting = (props) => {
       </div>
       <div style={styles.rightContainer}>
         <div style={styles.searchBarAndTabsContainer}>
-          <div style={styles.searchBarContainer}>
-            <SearchBar />
-          </div>
+          <SymbolSearchBar
+            searchBarStyle={styles.searchBar}
+          />
           <div style={styles.tabsContainer}>
-            <Tabs />
+            <ChartingTabs />
           </div>
         </div>
         <div style={styles.chartContainer}>

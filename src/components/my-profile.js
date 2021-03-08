@@ -115,7 +115,6 @@ class MyProfile extends Component {
   }
 
   renderSubscriptionText() {
-    console.log(this.props.profile.subscription.plan);
     const subscriptionPlanString = this.props.profile.subscription.plan;
     if (subscriptionPlanString === '') {
       return ('Free Plan');

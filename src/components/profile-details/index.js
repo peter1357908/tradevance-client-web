@@ -9,6 +9,29 @@ import cssVariables from '../../style.scss';
 
 // import {  } from '../actions/user-actions';
 
+// const tabs = {
+//   social: [
+//     following,
+//     followers,
+//     posts,
+//     comments,
+//     message system,
+//   ],
+//   quickTools: [
+//     watchlists,
+//     alerts,
+//     notes,
+//   ],
+//   simulatedAccounts: [],
+//   ideas: [
+//     ...
+//   ],
+//   settings: {
+//     subscription management,
+//     ...
+//   },
+// }
+
 function mapStateToProps(reduxState) {
   return {
     profile: reduxState.user.profile,

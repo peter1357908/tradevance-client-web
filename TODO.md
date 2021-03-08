@@ -36,8 +36,11 @@
 
 ## moderate
 
+* allow users to rearrange ChartingTabs (in bulk, even)
+
 ## hard
 
+* allow users to save the state of a group of charting tabs and re-open them (i.e. a more powerful version of a "watchlist")
 
 # New Features for the Client
 

@@ -5,6 +5,7 @@
   * exception: things that are only cleanly realized in CSS like `:hover`
 
 * for functional components, define constants as `const`s inside the function; for class components, define constants (including `styles`) as `const`s outside the class.
+  * if the styles would depend on the props, then declare them inside the function/class components
 
 * the folders inside the `components` directory contain grouped components, whose combined, exposed component is exported by `index.js` in the root of each folder.
 

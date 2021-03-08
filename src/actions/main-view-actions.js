@@ -1,34 +1,47 @@
+import ChartingTab from '../components/main-view/charting/charting-tab';
+
 export const MainViewActionTypes = {
-  SET_SEARCH_STRING: 'SET_SEARCH_STRING',
-  SET_CHARTING_TABS: 'SET_CHARTING_TABS',
-  SET_ACTIVE_CHARTING_TAB: 'SET_ACTIVE_CHARTING_TAB',
+  SET_ACTIVE_CHARTING_TAB_INDEX: 'SET_ACTIVE_CHARTING_TAB_INDEX',
+  ADD_CHARTING_TABS: 'ADD_CHARTING_TABS',
+  REMOVE_CHARTING_TABS_BY_INDICES: 'REMOVE_CHARTING_TABS_BY_INDICES',
 };
 
-export function setSearchString(searchString) {
+export function setActiveChartingTabIndex(tabIndex) {
   return (dispatch) => {
-    console.log('inside setSearchString dispatch');
-    console.log(searchString);
     dispatch({
-      type: MainViewActionTypes.SET_SEARCH_STRING,
-      searchString,
+      type: MainViewActionTypes.SET_ACTIVE_CHARTING_TAB_INDEX,
+      activeChartingTabIndex: tabIndex,
     });
   };
 }
 
-export function setChartingTabs(tabsArray) {
+// expects an array of new references to ChartingTab objects
+// will also update activeChartingTabIndex, via the reducer
+export function addChartingTabs(newChartingTabs) {
   return (dispatch) => {
     dispatch({
-      type: MainViewActionTypes.SET_CHARTING_TABS,
-      chartingTabs: tabsArray,
+      type: MainViewActionTypes.ADD_CHARTING_TABS,
+      newChartingTabs,
     });
   };
 }
 
-export function setActiveChartingTab(tabString) {
+// expects an array of symbol strings; wraps around addChartingTabs()
+export function addChartingTabsBySymbols(newSymbols) {
+  const newChartingTabs = [];
+  newSymbols.forEach((newSymbol) => {
+    newChartingTabs.push(new ChartingTab(newSymbol));
+  });
+  return addChartingTabs(newChartingTabs);
+}
+
+// expects a (unsorted) array of indices (for the ChartingTabs to be removed)
+// expects valid input (empty array or array of valid indices)
+export function removeChartingTabsByIndices(indices) {
   return (dispatch) => {
     dispatch({
-      type: MainViewActionTypes.SET_ACTIVE_CHARTING_TAB,
-      activeChartingTab: tabString,
+      type: MainViewActionTypes.REMOVE_CHARTING_TABS_BY_INDICES,
+      indices,
     });
   };
 }

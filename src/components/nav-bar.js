@@ -9,7 +9,7 @@ import cssVariables from '../style.scss';
 
 import { signOutUser } from '../actions/user-actions';
 
-import SearchBar from './search-bar';
+import SymbolSearchBar from './symbol-search-bar';
 
 function mapStateToProps(reduxState) {
   return {
@@ -37,6 +37,11 @@ const styles = {
 
   logo: {
     height: `${cssVariables.navBarHeight * 0.5}px`,
+  },
+
+  searchBar: {
+    height: '50%',
+    width: `min(40vw, ${cssVariables.maxWidth * 0.5}px)`,
   },
 
   buttons: {
@@ -97,7 +102,7 @@ class NavBar extends Component {
               alt="TradeVance Logo"
             />
           </NavLink>
-          <SearchBar />
+          <SymbolSearchBar searchBarStyle={styles.searchBar} />
           <FlexView vAlignContent="center" style={styles.buttons}>
             {this.contextualButtons()}
           </FlexView>
