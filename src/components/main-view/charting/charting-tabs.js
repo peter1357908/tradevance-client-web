@@ -1,11 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import FlexView from 'react-flexview';
-
-import cssVariables from '../../../style.scss';
-
-// import {  } from '../actions/user-actions';
+import ChartingTab from './charting-tab';
 
 function mapStateToProps(reduxState) {
   return {
@@ -16,32 +12,32 @@ function mapStateToProps(reduxState) {
 
 class ChartingTabs extends Component {
   styles = {
-    WIP: {
+    chartingTabs: {
+      display: 'flex',
+
       width: '100%',
       height: '100%',
-
-      fontSize: cssVariables.smallFontSize,
-
-      justifyContent: 'space-between',
     },
   };
 
-  getTabsString() {
-    let string = '';
+  chartingTabGeneratorCallBack = (chartingTabObject, index) => {
+    const isActive = (index === this.props.activeIndex);
 
-    this.props.tabs.forEach((chartingTab) => {
-      string = string.concat(`${chartingTab.symbol}, `);
-    });
-
-    return string;
-  }
+    return (
+      <ChartingTab
+        key={index}
+        isActive={isActive}
+        index={index}
+        symbol={chartingTabObject.symbol}
+      />
+    );
+  };
 
   render() {
     return (
-      <FlexView vAlignContent="center" style={this.styles.WIP}>
-        <div>tabs: {this.getTabsString()}</div>
-        <div>activeIndex: {this.props.activeIndex}</div>
-      </FlexView>
+      <div style={this.styles.chartingTabs}>
+        {this.props.tabs.map(this.chartingTabGeneratorCallBack)}
+      </div>
     );
   }
 }

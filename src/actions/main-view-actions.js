@@ -1,4 +1,4 @@
-import ChartingTab from '../components/main-view/charting/charting-tab';
+import ChartingTabObject from '../components/main-view/charting/charting-tab-object';
 
 export const MainViewActionTypes = {
   SET_ACTIVE_CHARTING_TAB_INDEX: 'SET_ACTIVE_CHARTING_TAB_INDEX',
@@ -30,7 +30,10 @@ export function addChartingTabs(newChartingTabs) {
 export function addChartingTabsBySymbols(newSymbols) {
   const newChartingTabs = [];
   newSymbols.forEach((newSymbol) => {
-    newChartingTabs.push(new ChartingTab(newSymbol));
+    // only add if the symbol is an non-empty string...
+    if (newSymbol) {
+      newChartingTabs.push(new ChartingTabObject(newSymbol));
+    }
   });
   return addChartingTabs(newChartingTabs);
 }

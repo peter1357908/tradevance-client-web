@@ -28,8 +28,8 @@ const getStateAfterRemovingChartingTabsByIndices = (state, indices) => {
   // if the element is not to be removed, add it to the new array
   for (let i = 0; i < chartingTabs.length; i += 1) {
     // if all relevant indices have been examined, just copy the rest
-    // of the elements
-    if (!targetIndex) {
+    // of the elements (can't do !targetIndex because it may be 0)
+    if (targetIndex === undefined) {
       while (i < chartingTabs.length) {
         newChartingTabs.push(chartingTabs[i]);
         i += 1;
@@ -75,7 +75,7 @@ const MainViewReducer = (state = initialState, action) => {
       return {
         ...state,
         chartingTabs: [...state.chartingTabs, ...action.newChartingTabs],
-        activeChartingTabIndex: state.activeChartingTabIndex + action.newChartingTabs.length,
+        activeChartingTabIndex: state.chartingTabs.length + action.newChartingTabs.length - 1,
       };
     case MainViewActionTypes.REMOVE_CHARTING_TABS_BY_INDICES:
       return getStateAfterRemovingChartingTabsByIndices(state, action.indices);

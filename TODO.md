@@ -17,6 +17,7 @@
 * Pull out the upper "overview" section in MyProfile and make it its own component. For abstraction.
 * use `const functionToPropsMapping` even when there is only one action to be mapped. Note that it is just a object! (there was some chained misunderstanding before that I'll omit here... renamed the variable to avoid further confusion)
 * design own sign-in and sign-up form instead of using Card and Form from react-bootstrap
+* define constants inside the components (rather than defining them globally/on a greater scope than necessary)
 
 # Definitions, Specifications, and Clarifications
 
@@ -29,6 +30,10 @@
 * curb the excessive use of \<FlexView\> (e.g. in `MyProfile`)
 
 * get rid of the ulgy imports (e.g. `../../../routePaths.js`)... maybe use global/env definitions?
+
+# Modularization
+
+* make my own reusable `Tabs` library/component?
 
 # Potential/Eventual Redundancies
 
@@ -48,7 +53,7 @@
 
 * allow users to save the state of a group of charting tabs and re-open them (i.e. a more powerful version of a "watchlist")
 
-# New Features for the Client
+# New Features for the Client (for the app itself, coding, developers...)
 
 ## easy
 
@@ -61,6 +66,8 @@
   * NavBar
   * Landing
   * MyProfile
+
+* make relevant functions allow both array and single-object input, then rename accordingly (i.e. rename `removeChartingTabsByIndices()` to `removeChartingTabsByIndex()` after enabling it to take in both an index and an array of indices)
 
 ## hard
 

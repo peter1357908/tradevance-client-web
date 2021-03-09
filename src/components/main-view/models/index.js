@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { NavLink, withRouter } from 'react-router-dom';
 
-import FlexView from 'react-flexview';
-
 import { routePaths } from '../../../global-variables';
 import cssVariables from '../../../style.scss';
 
@@ -17,19 +15,19 @@ function mapStateToProps(reduxState) {
 
 class ModelView extends Component {
   styles = {
-    profileDetails: {
+    WIP: {
       width: '100%',
       height: '100%',
 
-      fontSize: cssVariables.smallFontSize,
+      fontSize: cssVariables.mediumFontSize,
     },
   };
 
   render() {
     return (
-      <FlexView vAlignContent="center" hAlignContent="center">
+      <div className="center-the-only-item-inside" style={this.styles.WIP}>
         <NavLink to={routePaths.Landing}>WORK IN PROGRESS</NavLink>
-      </FlexView>
+      </div>
     );
   }
 }

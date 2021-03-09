@@ -1,6 +1,6 @@
 import React from 'react';
 
-import FlexView from 'react-flexview';
+import cssVariables from '../../../style.scss';
 
 // import {  } from '../actions/user-actions';
 
@@ -11,8 +11,19 @@ import FlexView from 'react-flexview';
 // }
 
 const ToolPillar = (props) => {
+  const styles = {
+    WIP: {
+      width: '100%',
+      height: '100%',
+
+      fontSize: cssVariables.mediumFontSize,
+    },
+  };
+
   return (
-    <FlexView hAlignContent="center" vAlignContent="center">WIP</FlexView>
+    <div className="center-the-only-item-inside" style={styles.WIP}>
+      WIP
+    </div>
   );
 };
 

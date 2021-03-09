@@ -13,6 +13,7 @@ const Charting = (props) => {
   const leftContainerWidth = 50; // in px - fixed length
   const searchBarAndTabsContainerHeight = 50; // in px - fixed length
   const spaceBetween = 15; // in px, realized by margin/padding
+  const defaultLineThickness = parseInt(cssVariables.defaultLineThickness, 10);
 
   // TODO: find a more consistent way to style the border lines
   const styles = {
@@ -82,6 +83,9 @@ const Charting = (props) => {
     },
     tabsContainer: {
       height: '100%',
+
+      // the shift is to accommodate the effect of styling with outlines
+      paddingRight: `${spaceBetween + defaultLineThickness}px`,
 
       flexGrow: '1',
     },

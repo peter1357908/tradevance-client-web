@@ -1,13 +1,50 @@
-// this specified the object whose reference is stored in the chartingTabs
-// state; contains a "save state" of the tab - its specifications,
-// modifications, etc.
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
-// currently it feels empty but likely much more is to come
+import { setActiveChartingTabIndex, removeChartingTabsByIndices } from '../../../actions/main-view-actions';
 
-class ChartingTab {
-  constructor(symbol) {
-    this.symbol = symbol;
+const functionToPropsMapping = {
+  setActiveChartingTabIndex,
+  removeChartingTabsByIndices,
+};
+
+// expects the following props:
+// isActive: Boolean
+// isLast: Boolean
+// index: Number
+// symbol: String
+class ChartingTab extends Component {
+  handleClick = (event) => {
+    if (!this.props.isActive) {
+      this.props.setActiveChartingTabIndex(this.props.index);
+    }
+  }
+
+  handleClose = (event) => {
+    this.props.removeChartingTabsByIndices([this.props.index]);
+  }
+
+  render() {
+    let containerClassName = 'charting-tab-container';
+    let tabClassName = 'charting-tab';
+    let closeButtonClassName = 'charting-tab-close';
+    if (this.props.isActive) {
+      containerClassName = containerClassName.concat(' charting-tab-container-active');
+      tabClassName = tabClassName.concat(' charting-tab-active');
+      closeButtonClassName = closeButtonClassName.concat(' charting-tab-close-active');
+    }
+
+    return (
+      <div className={containerClassName}>
+        <button type="button" onClick={this.handleClick} className={tabClassName}>
+          {this.props.symbol}
+        </button>
+        <button type="button" className={closeButtonClassName} onClick={this.handleClose}>
+          &#10006;
+        </button>
+      </div>
+    );
   }
 }
 
-export default ChartingTab;
+export default connect(null, functionToPropsMapping)(ChartingTab);

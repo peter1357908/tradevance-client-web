@@ -1,3 +1,6 @@
+// exported variables
+// ==================================================================
+
 $tv-purple: #660080;
 $tv-green: #009B00;
 
@@ -14,8 +17,10 @@ $medium-font-size: 20px;
 $small-font-size: 15px;
 $extra-small-font-size: 10px;
 
-$default-border: 3px solid $tv-purple;
-$default-border-radius: 3px;
+$default-line-thickness: 3; // in px
+$default-line-thickness-px: $default-line-thickness + px;
+$default-border: $default-line-thickness-px solid $tv-purple;
+$default-border-radius: $default-line-thickness-px;
 
 // webpack helps export the variables for use inside JS
 :export {
@@ -35,33 +40,32 @@ $default-border-radius: 3px;
   smallFontSize: $small-font-size;
   extraSmallFontSize: $extra-small-font-size;
 
+  defaultLineThickness: $default-line-thickness;
+  defaultLineThicknessPx: $default-line-thickness-px;
   defaultBorder: $default-border;
   defaultBorderRadius: $default-border-radius;
 }
 
-// the default settings
-* {  
-  font-family: "Open Sans", sans-serif;
-  font-style: normal;
-  font-size: $small-font-size;
+// non-exported variables
+// ==================================================================
+// $default-line-thickness-px-neg: calc(#{$default-line-thickness-px} * -1);
+
+// the "global" settings
+// ==================================================================
+* {
+  // for some reason this portion of `global` settings was acting
+  // inconsistent all of a sudden and I had to keep only `font-family`...
+  font-family: "Open Sans", sans-serif !important;
 }
 
-.footer-link:active, .footer-link:hover, .footer-link:visited {
-  color: $bg-black;
-}
-
+// the general styles (not specific to a component)
+// ==================================================================
 a {
   font-size: 1em;
 }
 
-// simulate a thick underline
-.footer-link:hover {
-  text-decoration: none;
-  border-bottom: 2px solid $bg-black;
-}
-
-body {
-  font-family: "Open Sans", sans-serif;
+input:focus {
+  box-shadow: inset 0 0 0.1em $tv-purple;
 }
 
 .primary-btn {
@@ -79,6 +83,10 @@ body {
   line-height: 100%;
 }
 
+.primary-btn:hover {
+  box-shadow: 0 0 0.2em $tv-purple;
+}
+
 .secondary-btn {
   padding: $extra-small-font-size $small-font-size;
 
@@ -94,6 +102,33 @@ body {
   line-height: 100%;
 }
 
+.secondary-btn:hover {
+  box-shadow: 0 0 0.2em $tv-purple;
+}
+
+.center-the-only-item-inside {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+// the specific styles (specific to some component)
+// ==================================================================
+
+// Footer Component
+// ==============================================
+// simulate a thick underline
+.footer-link:hover {
+  text-decoration: none;
+  box-shadow: 0 $default-line-thickness-px $bg-black;
+}
+
+.footer-link:active, .footer-link:hover, .footer-link:visited {
+  color: $bg-black;
+}
+
+// SearchBar Component
+// ==============================================
 .search-bar {
   display: flex;
 
@@ -104,7 +139,7 @@ body {
 
 .search-bar > input {
   height: 100%;
-  margin: 0 2px; 
+  padding: 0 $default-line-thickness-px; 
 
   border: none; // to negate the default styling
   outline: none; // to negate the default styling
@@ -126,4 +161,82 @@ body {
 
   text-align: center;
   line-height: 100%;
+}
+
+// ChartingTab Component
+// ==============================================
+.charting-tab-container {
+  position: relative;
+  flex-grow: 1;
+  // it's vital to set `width: 0;` or else the div
+  // will have a min-width equal to the content width
+  width: 0;
+  height: 100%;
+
+  max-width: 100px;
+  
+  outline: $default-border;
+
+  overflow: hidden;
+}
+
+// used to overwrite some properties in .charting-tab-container
+.charting-tab-container-active {
+  width: 100px;
+}
+
+.charting-tab {
+  width: 100%;
+  height: 100%;
+
+  background-color: $bg-white;
+  color: $tv-purple;
+
+  font-size: $large-font-size;
+  font-weight: bold;
+
+  white-space: nowrap;
+  overflow: hidden;
+
+  // the following negate the default styling
+  border: none;
+  outline: none;
+}
+
+.charting-tab:hover {
+  box-shadow: inset 0 $default-line-thickness-px $tv-purple;
+}
+
+// used to overwrite some properties in .charting-tab-button
+.charting-tab-active {
+  background-color: $tv-purple;
+  color: $bg-white;
+}
+
+.charting-tab-close {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+
+  transform: translate(-50%, -50%);
+
+  font-size: 13px;
+  line-height: 100%;
+  color: $tv-purple;
+
+  // the following negate the default styling
+  padding: 0;
+  background: none;
+  border: none;
+  outline: none;
+}
+
+.charting-tab-close:hover {
+  font-size: 20px;
+}
+
+// used to overwrite some properties in .charting-tab-button
+.charting-tab-close-active {
+  background-color: $tv-purple;
+  color: $bg-white;
 }
