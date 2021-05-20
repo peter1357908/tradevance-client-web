@@ -103,7 +103,7 @@ const Charting = (props) => {
   return (
     <div style={styles.charting}>
       <div style={styles.leftContainer}>
-        <NavLink to={routePaths.MyProfile} style={styles.profilePictureContainer}>
+        <NavLink to={routePaths.Profile} style={styles.profilePictureContainer}>
           {/* profile picture */}
         </NavLink>
         <div style={styles.toolPillarContainer}>

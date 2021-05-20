@@ -11,11 +11,11 @@ import cssVariables from '../../style.scss';
 
 function mapStateToProps(reduxState) {
   return {
-    profile: reduxState.user.profile,
+    overview: reduxState.overview,
   };
 }
 
-class Notes extends Component {
+class Social extends Component {
   styles = {
     profileDetails: {
       width: '100%',
@@ -34,4 +34,4 @@ class Notes extends Component {
   }
 }
 
-export default withRouter(connect(mapStateToProps, null)(Notes));
+export default withRouter(connect(mapStateToProps, null)(Social));

@@ -2,13 +2,13 @@
 
 export const routePaths = {
   Landing: '/',
-  MyProfile: '/my-profile',
-  PublicProfile: '/public-profile',
+  Profile: '/profile',
+  // OtherProfile: '/other-profile',
   MainView: '/main-view',
   SignIn: '/sign-in',
   SignUp: '/sign-up',
 };
 
-// export const API_ROOT_URL = 'http://localhost:9090/api';
-export const API_ROOT_URL = 'https://tradevance.herokuapp.com/api';
+export const API_ROOT_URL = 'http://localhost:9090/api';
+// export const API_ROOT_URL = 'https://tradevance.herokuapp.com/api';
 // TODO: make the above dependent on environment variable (whether development or production)

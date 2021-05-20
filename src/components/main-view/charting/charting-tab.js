@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 import { setActiveChartingTabIndex, removeChartingTabsByIndices } from '../../../actions/main-view-actions';
 
-const functionToPropsMapping = {
+const functionToPropMappings = {
   setActiveChartingTabIndex,
   removeChartingTabsByIndices,
 };
@@ -47,4 +47,4 @@ class ChartingTab extends Component {
   }
 }
 
-export default connect(null, functionToPropsMapping)(ChartingTab);
+export default connect(null, functionToPropMappings)(ChartingTab);

@@ -7,14 +7,14 @@ import FlexView from 'react-flexview';
 import { routePaths } from '../global-variables';
 import cssVariables from '../style.scss';
 
-import { signOutUser } from '../actions/user-actions';
+import { signOutUser } from '../actions/root-actions';
 
 import SymbolSearchBar from './symbol-search-bar';
 
 function mapStateToProps(reduxState) {
   return {
-    authenticated: reduxState.user.authenticated,
-    profile: reduxState.user.profile,
+    authenticated: reduxState.auth.authenticated,
+    username: reduxState.overview.username,
   };
 }
 
@@ -63,7 +63,7 @@ class NavBar extends Component {
   }
 
   onClickUsername = (event) => {
-    this.props.history.push(routePaths.MyProfile);
+    this.props.history.push(routePaths.Profile);
   }
 
   onClickSignOut = (event) => {
@@ -75,7 +75,7 @@ class NavBar extends Component {
       return (
         <>
           <button type="button" className="secondary-btn" onClick={this.onClickSignOut}>Sign Out</button>
-          <button type="button" className="primary-btn" style={styles.rightButton} onClick={this.onClickUsername}>{this.props.profile.auth.username}</button>
+          <button type="button" className="primary-btn" style={styles.rightButton} onClick={this.onClickUsername}>{this.props.username}</button>
         </>
       );
     } else {

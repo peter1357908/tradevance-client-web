@@ -9,7 +9,7 @@ import cssVariables from '../../../style.scss';
 
 function mapStateToProps(reduxState) {
   return {
-    profile: reduxState.user.profile,
+    overview: reduxState.overview,
   };
 }
 

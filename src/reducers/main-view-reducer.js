@@ -79,6 +79,9 @@ const MainViewReducer = (state = initialState, action) => {
       };
     case MainViewActionTypes.REMOVE_CHARTING_TABS_BY_INDICES:
       return getStateAfterRemovingChartingTabsByIndices(state, action.indices);
+
+    case MainViewActionTypes.RESET_MAIN_VIEW:
+      return initialState;
     default:
       return state;
   }

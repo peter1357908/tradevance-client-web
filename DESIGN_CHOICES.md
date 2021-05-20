@@ -16,6 +16,10 @@
   * now `text-align: center` doesn't appear to actually center the text, because the container looks smaller with the next element's outline overlapping with a portion of the current element...
   * the last element also appears larger, because it's the only element who doesn't have a "next element".
 
+* action types are namespaced by appending `namespace/` to the action performed. For example, for a "set watchlist" action in `profile-actions/watchlist-actions`, the action type should be named `PROFILE/WATCHLIST/SET_WATCHLIST` (`main-view-actions` would be capitalized as such: `MAIN-VIEW`)
+
+* code parts that are for functionaly placeholders (like the "manage subscription" button before having implemented the related (underlying) functionality) are commented out with `// TODO: implement and uncomment`
+
 # Alternative Designs to explore
 
 * Add a scroll bar to the `Tabs` type component and keep a minimum width a tab can get (not just the active tab). Will need to stylize the scroll bar (use existing React libraries?)

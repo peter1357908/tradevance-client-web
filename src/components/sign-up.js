@@ -1,4 +1,4 @@
-// this should be wrapped in a `RedirectRoute`: if authenticated, redirect to my-profile
+// this should be wrapped in a `RedirectRoute`: if authenticated, redirect to `Profile`
 
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
@@ -7,7 +7,7 @@ import { withRouter } from 'react-router';
 
 import FlexView from 'react-flexview';
 
-import { signUpUser } from '../actions/user-actions';
+import { signUpUser } from '../actions/auth-actions';
 
 import cssVariables from '../style.scss';
 

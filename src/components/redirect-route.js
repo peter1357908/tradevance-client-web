@@ -9,7 +9,7 @@ import { Route, Redirect } from 'react-router-dom';
 
 function mapStateToProps(reduxState) {
   return {
-    authenticated: reduxState.user.authenticated,
+    authenticated: reduxState.auth.authenticated,
   };
 }
 

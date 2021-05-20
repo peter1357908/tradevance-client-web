@@ -4,19 +4,19 @@ import React, { Component } from 'react';
 import FlexView from 'react-flexview/lib';
 import { connect } from 'react-redux';
 
-import { fetchOwnProfile } from '../actions/user-actions';
-import cssVariables from '../style.scss';
+import { fetchOverview } from '../../actions/profile-actions/overview-actions';
+import cssVariables from '../../style.scss';
 
 import ProfileDetails from './profile-details';
 
 function mapStateToProps(reduxState) {
   return {
-    profile: reduxState.user.profile,
+    overview: reduxState.overview,
   };
 }
 
-const functionToPropsMapping = {
-  fetchOwnProfile,
+const functionToPropMappings = {
+  fetchOverview,
 };
 
 const profileMaxWidth = `${cssVariables.maxWidth}px`;
@@ -104,80 +104,25 @@ const styles = {
   },
 };
 
-class MyProfile extends Component {
+class Profile extends Component {
   componentDidMount() {
-    const token = localStorage.getItem('token');
-    this.props.fetchOwnProfile(token);
+    this.props.fetchOverview();
   }
 
-  onClickSubscriptionButton = (event) => {
-    console.log('subscription button clicked');
-  }
+  // TODO: implement and uncomment
+  // onClickSubscriptionButton = (event) => {
+  //   console.log('subscription button clicked');
+  // }
 
-  renderSubscriptionText() {
-    const subscriptionPlanString = this.props.profile.subscription.plan;
-    if (subscriptionPlanString === '') {
-      return ('Free Plan');
-    } else {
-      return subscriptionPlanString;
-    }
-  }
-
-  renderSubscriptionButtonText() {
-    if (this.props.profile.subscription.plan === '') {
-      return ('Subscribe');
-    } else {
-      return ('Manage');
-    }
-  }
-
-  // TODO: consider leap years/use more elegant solution
-  renderJoinedTimeAgo() {
-    const createdAtString = this.props.profile.createdAt;
-    // if the data is not available yet, render nothing
-    if (createdAtString === '') {
-      return ('');
-    }
-
-    const currentDate = new Date();
-    const createdAtDate = new Date(createdAtString);
-    const difference = currentDate - createdAtDate;
-
-    const dayInMilliseconds = 1000 * 60 * 60 * 24;
-    const yearInMilliseconds = dayInMilliseconds * 365;
-    const yearDifference = Math.floor(difference / yearInMilliseconds);
-    const yearRemainder = difference % yearInMilliseconds;
-    const dayDifference = Math.floor(yearRemainder / dayInMilliseconds);
-
-    if (yearDifference < 1 && dayDifference < 1) {
-      return ('Joined less than a day ago');
-    }
-
-    let outputString = '';
-
-    if (yearDifference > 0) {
-      outputString = `Joined ${yearDifference} year${yearDifference > 1 ? 's' : ''} and`;
-    } else {
-      outputString = 'Joined';
-    }
-
-    return (`${outputString} ${dayDifference} day${dayDifference > 1 ? 's' : ''} ago`);
-  }
-
-  renderTotalIdeaCount() {
-    let totalIdeaCount = 0;
-    Object.values(this.props.profile.ideas.own)
-      .forEach((ideaArray) => {
-        totalIdeaCount += ideaArray.length;
-      });
-    return (`Ideas: ${totalIdeaCount}`);
-  }
-
-  renderTotalLikeCount() {
-    const totalLikeCount = Object.values(this.props.profile.social.likeCount)
-      .reduce((sum, next) => sum + next, 0);
-    return (`Likes: ${totalLikeCount}`);
-  }
+  // TODO: implement and uncomment
+  // renderSubscriptionButtonText() {
+  //   // the name should be consistent with the server side definition
+  //   if (this.props.overview.subscriptionName === 'FREE PLAN') {
+  //     return ('Upgrade');
+  //   } else {
+  //     return ('Manage');
+  //   }
+  // }
 
   render() {
     return (
@@ -192,15 +137,16 @@ class MyProfile extends Component {
 
             <FlexView column style={styles.usernameAndSubscription}>
               <FlexView vAlignContent="center" style={styles.username}>
-                {this.props.profile.auth.username}
+                {this.props.overview.username}
               </FlexView>
               <FlexView vAlignContent="center" style={styles.subscriptionContainer}>
                 <div style={styles.subscriptionText}>
-                  {this.renderSubscriptionText()}
+                  {this.props.overview.subscriptionName}
                 </div>
-                <button type="button" className="secondary-btn" onClick={this.onClickSubscriptionButton} style={styles.subscriptionButton}>
+                {/* TODO: implement and uncomment */}
+                {/* <button type="button" className="secondary-btn" onClick={this.onClickSubscriptionButton} style={styles.subscriptionButton}>
                   {this.renderSubscriptionButtonText()}
-                </button>
+                </button> */}
               </FlexView>
             </FlexView>
           </FlexView>
@@ -208,15 +154,13 @@ class MyProfile extends Component {
           {/* right section */}
           <FlexView column style={styles.overviewRight}>
             <FlexView vAlignContent="center" style={styles.overviewRightSingleRow}>
-              <div>{this.renderJoinedTimeAgo()}</div>
-              <div>Followers: {this.props.profile.social.followers.length}</div>
-              <div>Following: {this.props.profile.social.following.length}</div>
+              <div>{this.props.overview.joinedTimeAgo}</div>
             </FlexView>
 
             <FlexView vAlignContent="center" style={styles.overviewRightSingleRow}>
-              <div>Posts: {this.props.profile.social.ownPosts.length}</div>
-              <div>{this.renderTotalIdeaCount()}</div>
-              <div>{this.renderTotalLikeCount()}</div>
+              <div>Followers: {this.props.overview.numFollowers}</div>
+              <div>Following: {this.props.overview.numFollowing}</div>
+              <div>Likes: {this.props.overview.numLikes}</div>
             </FlexView>
           </FlexView>
         </FlexView>
@@ -228,4 +172,4 @@ class MyProfile extends Component {
   }
 }
 
-export default connect(mapStateToProps, functionToPropsMapping)(MyProfile);
+export default connect(mapStateToProps, functionToPropMappings)(Profile);

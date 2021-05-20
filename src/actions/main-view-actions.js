@@ -4,6 +4,8 @@ export const MainViewActionTypes = {
   SET_ACTIVE_CHARTING_TAB_INDEX: 'SET_ACTIVE_CHARTING_TAB_INDEX',
   ADD_CHARTING_TABS: 'ADD_CHARTING_TABS',
   REMOVE_CHARTING_TABS_BY_INDICES: 'REMOVE_CHARTING_TABS_BY_INDICES',
+
+  RESET_MAIN_VIEW: 'RESET_MAIN_VIEW',
 };
 
 export function setActiveChartingTabIndex(tabIndex) {
@@ -31,7 +33,7 @@ export function addChartingTabsBySymbols(newSymbols) {
   const newChartingTabs = [];
   newSymbols.forEach((newSymbol) => {
     // only add if the symbol is an non-empty string...
-    if (newSymbol) {
+    if (newSymbol !== '') {
       newChartingTabs.push(new ChartingTabObject(newSymbol));
     }
   });

@@ -6,7 +6,7 @@ import { routePaths } from '../global-variables';
 
 import { addChartingTabsBySymbols } from '../actions/main-view-actions';
 
-const functionToPropsMapping = {
+const functionToPropMappings = {
   addChartingTabsBySymbols,
 };
 
@@ -20,7 +20,7 @@ class SymbolSearchBar extends Component {
   }
 
   onInputChangeSearchString = (event) => {
-    this.setState({ searchString: event.target.value });
+    this.setState({ searchString: event.target.value.toUpperCase() });
   }
 
   handleSubmit = (event) => {
@@ -38,7 +38,7 @@ class SymbolSearchBar extends Component {
   render() {
     return (
       <form className="search-bar" style={this.props.searchBarStyle} onSubmit={this.handleSubmit}>
-        <input type="text" style={this.props.searchBarInputStyle} onChange={this.onInputChangeSearchString} value={this.state.username} placeholder="Input symbol to search" />
+        <input type="text" style={this.props.searchBarInputStyle} onChange={this.onInputChangeSearchString} value={this.state.searchString} placeholder="Input symbol to search" />
         <button type="submit" style={this.props.searchBarButtonStyle} onClick={this.handleSubmit}>
           Go
         </button>
@@ -47,4 +47,4 @@ class SymbolSearchBar extends Component {
   }
 }
 
-export default withRouter(connect(null, functionToPropsMapping)(SymbolSearchBar));
+export default withRouter(connect(null, functionToPropMappings)(SymbolSearchBar));

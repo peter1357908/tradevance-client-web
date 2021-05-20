@@ -79,6 +79,7 @@ input:focus {
   font-size: $small-font-size;
   color:$bg-white;
 
+  white-space: nowrap;
   text-align: center;
   line-height: 100%;
 }
@@ -98,6 +99,7 @@ input:focus {
   font-size: $small-font-size;
   color:$tv-purple;
 
+  white-space: nowrap;
   text-align: center;
   line-height: 100%;
 }

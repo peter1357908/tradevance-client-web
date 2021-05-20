@@ -11,7 +11,7 @@ import { routePaths } from '../global-variables';
 
 function mapStateToProps(reduxState) {
   return {
-    authenticated: reduxState.user.authenticated,
+    authenticated: reduxState.auth.authenticated,
   };
 }
 
